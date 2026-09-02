@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Normalized daily inventory fact",
+  "type": "object",
+  "required": ["stay_date", "room_type", "sellable_rooms"],
+  "properties": {
+    "stay_date": {"type": "string", "format": "date"},
+    "room_type": {"type": "string"},
+    "sellable_rooms": {"type": "integer", "minimum": 0},
+    "out_of_order_rooms": {"type": "integer", "minimum": 0},
+    "group_block_rooms": {"type": "integer", "minimum": 0}
+  }
+}

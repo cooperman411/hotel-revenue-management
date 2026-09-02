@@ -1,0 +1,6 @@
+interface:
+  display_name: "Hotel Rate Optimizer"
+  short_description: "Create explainable daily hotel rate guidance"
+  default_prompt: "Use $hotel-rate-optimizer to create a human-reviewable daily rate plan for this property."
+policy:
+  allow_implicit_invocation: true

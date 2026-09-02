@@ -1,0 +1,11 @@
+{
+  "run_id": "demo-run",
+  "as_of_date": "2026-09-01",
+  "inputs": [{"source": "examples/minimal", "coverage": "demo only"}],
+  "findings": [{
+    "classification": "derived",
+    "confidence": "low",
+    "evidence": [{"source": "reservations.csv", "fields": ["stay_date", "room_nights", "adr"], "sample_size": 1}],
+    "statement": "The example has insufficient history for a stable day-of-week pattern."
+  }]
+}

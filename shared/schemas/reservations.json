@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Normalized reservation fact",
+  "type": "object",
+  "required": ["reservation_key", "stay_date", "room_type", "room_nights", "adr", "status", "booked_at"],
+  "properties": {
+    "reservation_key": {"type": "string", "description": "Pseudonymous stable key; no guest identifier."},
+    "stay_date": {"type": "string", "format": "date"},
+    "room_type": {"type": "string"},
+    "room_nights": {"type": "number", "minimum": 0},
+    "adr": {"type": "number", "minimum": 0},
+    "status": {"type": "string", "enum": ["booked", "checked_in", "checked_out", "cancelled", "no_show"]},
+    "booked_at": {"type": "string", "format": "date-time"},
+    "channel": {"type": "string"},
+    "rate_plan": {"type": "string"}
+  }
+}

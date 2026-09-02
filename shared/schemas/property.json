@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Hotel property configuration",
+  "type": "object",
+  "required": ["property_id", "currency", "timezone", "room_types", "rate_policy"],
+  "properties": {
+    "property_id": {"type": "string", "pattern": "^[A-Za-z0-9_-]+$"},
+    "property_name": {"type": "string"},
+    "currency": {"type": "string", "minLength": 3, "maxLength": 3},
+    "timezone": {"type": "string"},
+    "room_types": {"type": "array", "items": {"type": "object", "required": ["room_type", "sellable_rooms"], "properties": {"room_type": {"type": "string"}, "sellable_rooms": {"type": "integer", "minimum": 1}}}},
+    "rate_policy": {"type": "object", "required": ["min_rate", "max_rate", "default_rate"], "properties": {"min_rate": {"type": "number", "exclusiveMinimum": 0}, "max_rate": {"type": "number"}, "default_rate": {"type": "number", "exclusiveMinimum": 0}, "adjustment_cap_pct": {"type": "number", "minimum": 0, "maximum": 0.5}}}
+  }
+}

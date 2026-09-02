@@ -1,0 +1,6 @@
+interface:
+  display_name: "Hotel Revenue Audit"
+  short_description: "Audit hotel performance, outlook, and RM process"
+  default_prompt: "Use $hotel-revenue-audit to audit this property's performance, outlook, and revenue-management process."
+policy:
+  allow_implicit_invocation: true

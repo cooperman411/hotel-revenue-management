@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Daily rate recommendation",
+  "type": "object",
+  "required": ["recommendation_id", "stay_date", "room_type", "recommended_rate", "confidence", "rationale"],
+  "properties": {
+    "recommendation_id": {"type": "string"},
+    "stay_date": {"type": "string", "format": "date"},
+    "room_type": {"type": "string"},
+    "recommended_rate": {"type": "number", "exclusiveMinimum": 0},
+    "low_rate": {"type": "number", "exclusiveMinimum": 0},
+    "high_rate": {"type": "number", "exclusiveMinimum": 0},
+    "confidence": {"type": "string", "enum": ["high", "medium", "low"]},
+    "rationale": {"type": "string"},
+    "human_decision": {"type": "string", "enum": ["pending", "approved", "modified", "rejected"]}
+  }
+}

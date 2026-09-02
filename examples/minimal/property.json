@@ -1,0 +1,8 @@
+{
+  "property_id": "demo-hotel",
+  "property_name": "Demo Hotel",
+  "currency": "USD",
+  "timezone": "America/Los_Angeles",
+  "room_types": [{"room_type": "standard", "sellable_rooms": 10}],
+  "rate_policy": {"min_rate": 99, "max_rate": 399, "default_rate": 179, "adjustment_cap_pct": 0.25}
+}
