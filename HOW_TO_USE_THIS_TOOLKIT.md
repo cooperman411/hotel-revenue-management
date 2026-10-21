@@ -46,7 +46,7 @@ The preferred long-term path is an approved adapter that retrieves only the comm
 The current project includes placeholders for:
 
 - Mews — PMS/API adapter boundary is documented, but the live connector is not implemented yet.
-- Market data - source-agnostic adapter boundary in `adapters/market-data/README.md`. Hotel rate shoppers (Lighthouse/OTA Insight, RateGain) are the recommended source for retail comp rates; `scripts/fetch_market_rates.py` implements a Nuitee LiteAPI fetcher (sandbox for testing, API key from the `NUITEELITE_API_KEY` environment variable) plus a manual CSV path. The old DataForSEO placeholder was superseded and is kept as a deprecation note in `adapters/dataforseo/README.md`.
+- Market data - source-agnostic adapter boundary in `adapters/market-data/README.md`. Hotel rate shoppers (Lighthouse/OTA Insight, RateGain) are the recommended source for retail comp rates; `scripts/fetch_market_rates.py` implements a Nuitee LiteAPI fetcher (sandbox for testing, API key from the `NUITEELITE_API_KEY` environment variable) plus a manual CSV path.
 
 An API login or token should be supplied only through the approved connector's secret-management process. Do not paste credentials into questionnaires, CSV files, Markdown, prompts, or reports. The current toolkit does not request or store API credentials.
 

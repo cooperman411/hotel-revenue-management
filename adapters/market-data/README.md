@@ -49,13 +49,6 @@ rate is not faked as zero). See `scripts/calculate_rates.py` and
    accepts `--from-csv` with columns
    `stay_date,room_type,comp_median_rate,comp_count,property_rate` and
    rewrites it into the canonical output format with validation.
-4. **DataForSEO (experimental, demand signals only).** DataForSEO is a
-   generic SEO and search-results data vendor, not a hotel industry tool.
-   It is not named as a rate source: its results page prices are lead-in
-   prices, not room-type prices, and large-scale harvesting sits in a terms
-   gray zone. It remains an experimental option for event and demand
-   signals, not for rate data.
-
 ## Evidence rules (apply to every source)
 
 - Record source, `observed_at` freshness, and `comp_count` coverage on every
