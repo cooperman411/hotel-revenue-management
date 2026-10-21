@@ -28,12 +28,14 @@ def main():
         rows = list(csv.DictReader(f))
     daily = defaultdict(lambda: {"rooms": 0.0, "revenue": 0.0, "adrs": []})
     dow = defaultdict(lambda: {"rooms": 0.0, "revenue": 0.0, "adrs": []})
+    dow_room_type = defaultdict(lambda: defaultdict(lambda: {"rooms": 0.0, "revenue": 0.0, "adrs": []}))
     for row in rows:
         if row.get("status") not in ACTIVE:
             continue
         stay_date = date.fromisoformat(row["stay_date"][:10])
         if args.as_of and stay_date >= date.fromisoformat(args.as_of):
             continue
+        room_type = row.get("room_type") or "all"
         rooms = float(row["room_nights"])
         adr = float(row["adr"])
         revenue = rooms * adr
@@ -41,11 +43,20 @@ def main():
             target[key]["rooms"] += rooms
             target[key]["revenue"] += revenue
             target[key]["adrs"].append(adr)
-    result = {"daily": {}, "day_of_week": {}, "source_rows": len(rows)}
+        segment = dow_room_type[room_type][str(stay_date.weekday())]
+        segment["rooms"] += rooms
+        segment["revenue"] += revenue
+        segment["adrs"].append(adr)
+    result = {"daily": {}, "day_of_week": {}, "day_of_week_by_room_type": {}, "source_rows": len(rows)}
     for key, value in daily.items():
         result["daily"][key] = {"room_nights": round(value["rooms"], 2), "revenue": round(value["revenue"], 2), "adr_median": percentile(value["adrs"], .5), "adr_p25": percentile(value["adrs"], .25), "adr_p75": percentile(value["adrs"], .75), "observations": len(value["adrs"])}
     for key, value in dow.items():
         result["day_of_week"][key] = {"room_nights": round(value["rooms"], 2), "revenue": round(value["revenue"], 2), "adr_median": percentile(value["adrs"], .5), "adr_p25": percentile(value["adrs"], .25), "adr_p75": percentile(value["adrs"], .75), "observations": len(value["adrs"])}
+    for room_type, segments in dow_room_type.items():
+        result["day_of_week_by_room_type"][room_type] = {
+            key: {"room_nights": round(value["rooms"], 2), "revenue": round(value["revenue"], 2), "adr_median": percentile(value["adrs"], .5), "adr_p25": percentile(value["adrs"], .25), "adr_p75": percentile(value["adrs"], .75), "observations": len(value["adrs"])}
+            for key, value in segments.items()
+        }
     with open(args.output, "w", encoding="utf-8") as f:
         json.dump(result, f, indent=2)
     print(json.dumps({"written": args.output, "daily_dates": len(daily), "day_of_week_segments": len(dow)}, indent=2))

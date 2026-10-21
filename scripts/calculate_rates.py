@@ -52,9 +52,20 @@ def main():
             booked = otb[(day, room_type)]
             occupancy = booked / sellable if sellable else 0.0
             segment = history.get("day_of_week", {}).get(dow, {})
-            baseline = segment.get("adr_median") or float(policy["default_rate"])
-            observations = int(segment.get("observations", 0))
-            reasons = [f"property DOW median baseline ${baseline:.2f}"] if segment.get("adr_median") else ["configured default baseline; no comparable history"]
+            type_segment = history.get("day_of_week_by_room_type", {}).get(room_type, {}).get(dow, {})
+            if type_segment.get("adr_median"):
+                baseline = type_segment["adr_median"]
+                observations = int(type_segment.get("observations", 0))
+                reasons = [f"room-type DOW median baseline ${baseline:.2f}"]
+            elif segment.get("adr_median"):
+                baseline = segment["adr_median"]
+                observations = int(segment.get("observations", 0))
+                reasons = [f"property DOW median baseline ${baseline:.2f} (pooled, no room-type history)"]
+            else:
+                baseline = float(policy["default_rate"])
+                observations = 0
+                reasons = ["configured default baseline; no comparable history"]
+            baseline = float(baseline)
             adjustment = 0.0
             if observations >= 10:
                 if occupancy >= .80:
