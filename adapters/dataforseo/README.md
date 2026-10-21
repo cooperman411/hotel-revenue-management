@@ -1,5 +1,13 @@
-# DataForSEO adapter placeholder
+# DataForSEO adapter (superseded)
 
-Implement a market-rate/event research adapter only where permitted by the account, source terms, and property workflow. Normalize observations into `shared/schemas/market_rates.json`; retain observed timestamp, stay date, room type, property rate, comp median, and comp count.
+This folder is kept for history only. The DataForSEO placeholder has been
+superseded by the source-agnostic market-data adapter.
 
-Do not treat scraped or incomplete market data as ground truth. Record source, freshness, coverage, and collection errors so confidence can be reduced when needed.
+See `../market-data/README.md` for the current market-data boundary:
+
+- any source (rate shopper, Nuitee LiteAPI, manual CSV) that can produce the
+  `market_rates` schema contract is accepted;
+- DataForSEO is no longer named as a price source. It remains an
+  experimental option for event and demand signals only, not for rate data.
+
+Do not build new work against this folder.

@@ -46,7 +46,7 @@ The preferred long-term path is an approved adapter that retrieves only the comm
 The current project includes placeholders for:
 
 - Mews — PMS/API adapter boundary is documented, but the live connector is not implemented yet.
-- DataForSEO — market-rate/event research adapter boundary is documented, but the live connector is not implemented yet.
+- Market data - source-agnostic adapter boundary in `adapters/market-data/README.md`. Hotel rate shoppers (Lighthouse/OTA Insight, RateGain) are the recommended source for retail comp rates; `scripts/fetch_market_rates.py` implements a Nuitee LiteAPI fetcher (sandbox for testing, API key from the `NUITEELITE_API_KEY` environment variable) plus a manual CSV path. The old DataForSEO placeholder was superseded and is kept as a deprecation note in `adapters/dataforseo/README.md`.
 
 An API login or token should be supplied only through the approved connector's secret-management process. Do not paste credentials into questionnaires, CSV files, Markdown, prompts, or reports. The current toolkit does not request or store API credentials.
 
@@ -131,6 +131,36 @@ python3 scripts/calculate_rates.py \
 
 The market-rates option is optional. If it is unavailable, the output says so through its confidence and rationale rather than pretending the market signal is zero.
 
+### Getting market data in
+
+`market_rates.csv` can come from three paths, all documented in `adapters/market-data/README.md`:
+
+1. **Rate shopper export (recommended for production):** export the comp-set report from Lighthouse/OTA Insight or RateGain and map it to the `market_rates` schema columns (`observed_at,stay_date,room_type,property_rate,comp_median_rate,comp_count`).
+2. **Nuitee LiteAPI (implemented):** fetch comp-set rates for a horizon of stay dates. The API key comes only from the `NUITEELITE_API_KEY` environment variable; without `--live` the script assumes a sandbox key.
+
+```text
+export NUITEELITE_API_KEY="<your sandbox key, never committed or pasted into files>"
+
+python3 scripts/fetch_market_rates.py \
+  --hotel-ids lp1897,lp3803c \
+  --as-of 2026-09-01 \
+  --days 14 \
+  --room-map work/comp-room-map.json \
+  --output inputs/market_rates.csv
+```
+
+The `--room-map` file maps supplier room labels (or `mappedRoomId`) to the property's room types, for example `{"Deluxe King Room": "deluxe", "SUITE": "suite"}`. Unmapped offers are skipped and counted, never guessed.
+
+3. **Manual CSV (no-API path, good for demos):** a hand-entered comp snapshot with columns `stay_date,room_type,comp_median_rate,comp_count,property_rate` is validated and rewritten into the canonical format.
+
+```text
+python3 scripts/fetch_market_rates.py \
+  --from-csv work/manual-comp-snapshot.csv \
+  --output inputs/market_rates.csv
+```
+
+Market prices are a position signal, not ground truth. Record the source and freshness, keep `comp_count` honest, and let the engine's evidence rules handle thin data.
+
 Each recommendation includes:
 
 - stay date and room type;
@@ -169,7 +199,7 @@ Ready now:
 Not implemented yet:
 
 - live Mews login/API retrieval;
-- live DataForSEO retrieval;
+- live rate-shopper retrieval (Lighthouse/OTA Insight, RateGain); the adapter boundary is documented and the Nuitee/manual paths work;
 - automatic PDF/report extraction;
 - direct rate publication to a PMS, CRS, or RMS;
 - a machine-learned elasticity model;
