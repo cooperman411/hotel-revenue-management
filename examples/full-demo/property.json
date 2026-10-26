@@ -1,0 +1,22 @@
+{
+  "property_id": "harbor-view-inn",
+  "property_name": "Harbor View Inn",
+  "currency": "USD",
+  "timezone": "America/Los_Angeles",
+  "room_types": [
+    {
+      "room_type": "standard",
+      "sellable_rooms": 7
+    },
+    {
+      "room_type": "deluxe",
+      "sellable_rooms": 3
+    }
+  ],
+  "rate_policy": {
+    "min_rate": 129,
+    "max_rate": 499,
+    "default_rate": 199,
+    "adjustment_cap_pct": 0.25
+  }
+}
