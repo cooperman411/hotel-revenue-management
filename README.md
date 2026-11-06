@@ -6,6 +6,16 @@
 
 The toolkit supports evidence-based hotel revenue audits and provisional daily rate guidance. It uses reusable CSV imports, an offline empirical pickup engine, review reports, editable XLSX/CSV outputs, recorded human decisions and approved-rate CSV exports. Live PMS retrieval, live competitor retrieval and live rate publishing are not implemented. The only API destination is an offline mock.
 
+## Why this exists
+
+I wanted to explore how an independent hotel could get a useful revenue review from the data it can already export, without first buying a full revenue-management system or market-data subscription. This toolkit turns those files into a provisional outlook, rate recommendations, and a review pack a revenue manager can inspect and challenge. It makes the evidence, gaps, and limits visible so the next human decision is easier.
+
+Like PT/OS, it favors understandable files, practical steps, and tools that remain useful across different AI assistants and hotel systems. A person reviews each recommendation, records a decision, and controls any later import.
+
+## What makes this different
+
+This is an offline, human-reviewed toolkit for working from hotel exports; it is not a live RMS or automated pricing service. It does not fetch competitor rates, continuously optimize prices, or write to a live PMS. The current engine uses empirical pickup from comparable historical dates and configured guardrails to produce provisional guidance. It keeps uncertainty visible, requires an explicit human decision, and exports only approved values for a separate, hotel-controlled import process.
+
 ## Start
 
 Read [How to use the toolkit](HOW_TO_USE_THIS_TOOLKIT.md). [Review workflow](REVIEW_WORKFLOW.md) explains the calculation and approval contract. [Data imports and publishing](DATA_AND_PUBLISHING.md) covers reusable mappings, export checks and the offline publication protocol.
