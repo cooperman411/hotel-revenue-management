@@ -44,15 +44,15 @@ The engine reconstructs bookings at comparable lead times and applies empirical 
 
 A human reviews every recommendation. Approving a rate does not authorize publication. The toolkit cannot make live PMS writes; any manual import must follow the hotel's own review, backup and confirmation process.
 
-## Other public projects by Kerry Cooper
+## Other public projects by Cooperman411
 
-These are separate projects. Their contents do not add requirements or instructions for using this repository.
+These are separate projects. They are not prerequisites, dependencies, or additional instructions for using this repository.
 
-- [PT/OS Workspace](https://github.com/cooperman411/plain-text-os): An AI-managed collection of plain-text files for projects, priorities, and workflows.
-- [PT/OS One](https://github.com/cooperman411/plain-text-os-one): A portable plain-text document for working with different AI assistants.
 - [Hotel Group Sourcing Skill](https://github.com/cooperman411/hotel-group-rfp): An AI-assisted workflow for hotel group RFPs, proposal tracking, comparison, and decision reporting.
-- [AteBit.Tech](https://github.com/cooperman411/AteBitTech): A directory of retro and vintage computing resources.
+- [PT/OS One](https://github.com/cooperman411/plain-text-os-one): A single plain-text document you give an AI assistant to carry forward your preferences, projects, decisions, and recurring tasks.
+- [PT/OS Workspace](https://github.com/cooperman411/plain-text-os): A collection of plain-text files an AI assistant can read and update to organize projects, priorities, and workflows.
+- [AteBit.Tech](https://github.com/cooperman411/AteBitTech): A curated directory of retro and vintage computing resources.
 
 ## License
 
-[MIT License](LICENSE). Copyright (c) 2026 Kerry Cooper.
+[MIT License](LICENSE). Copyright (c) 2026 Cooperman411.
