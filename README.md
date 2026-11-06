@@ -1,6 +1,6 @@
 # Hotel Revenue Management Toolkit
 
-**Status: in development.** This private project has not been used or tested with real hotel data, PMS systems, competitor feeds or live websites. Included examples and automated checks use synthetic data only.
+**Status: in development.** This project has not been used or tested with real hotel data, PMS systems, competitor feeds or live websites. Included examples and automated checks use synthetic data only.
 
 **Use at your own risk.** This project is in development and has not been validated with real hotel data or live systems. You are responsible for checking inputs, calculations, recommendations, destination mappings and every operational change. Incorrect outputs or imports can cause financial loss, data loss, or unintended changes to hotel rates and systems. Preserve recoverable backups, verify the destination system's import and recovery procedures, and independently review every change before operational use. The software and documentation are provided without warranty under the [MIT License](LICENSE), which includes a limitation of author liability.
 
