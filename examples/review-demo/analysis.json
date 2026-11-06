@@ -1,0 +1,67 @@
+{
+  "property": {
+    "property_id": "synthetic-inn",
+    "property_name": "Synthetic Inn",
+    "currency": "USD",
+    "room_types": [
+      {
+        "room_type": "standard"
+      }
+    ],
+    "rate_policy": {
+      "min_rate": 100,
+      "max_rate": 500,
+      "default_rate": 200,
+      "adjustment_cap_pct": 0.15
+    }
+  },
+  "as_of": "2026-11-06T23:00:00+00:00",
+  "start": "2026-11-20",
+  "days": 2,
+  "requested_cells": 2,
+  "evaluated_cells": 1,
+  "gaps": [
+    "2026-11-21/standard: missing inventory"
+  ],
+  "recommendations": [
+    {
+      "recommendation_id": "177d0a4eabdaef27910f",
+      "property_id": "synthetic-inn",
+      "analysis_timestamp": "2026-11-06T23:00:00+00:00",
+      "stay_date": "2026-11-20",
+      "day_of_week": "Friday",
+      "room_type": "standard",
+      "rate_plan": "BAR",
+      "currency": "USD",
+      "current_rate": 200,
+      "recommended_rate": 230.0,
+      "adjustment_pct": 0.1499999999999999,
+      "min_rate": 100,
+      "max_rate": 500,
+      "booked_rooms": 30,
+      "sellable_rooms": 100,
+      "occupancy": 0.3,
+      "expected_occupancy": 1.0,
+      "demand_p10": 110.0,
+      "demand_p50": 110.0,
+      "demand_p90": 110.0,
+      "sellout_probability": 1.0,
+      "expected_displaced_rooms": 10.0,
+      "pickup_7": 30,
+      "acceleration": 4.285714285714286,
+      "competitor_comparison": null,
+      "confidence": "provisional",
+      "priority": "high",
+      "rationale": "30/100 rooms booked; net seven-day pickup +30; acceleration +4.29 rooms/day. 8 comparable dates; empirical sellout frequency 100%.",
+      "warnings": "Provisional empirical forecast; calibration not established",
+      "baseline": 200,
+      "adjustment_logic": "Configured movement +15.0%; floor 100; ceiling 500",
+      "analog_dates": "2026-10-30,2026-10-23,2026-10-16,2026-10-09,2025-11-21,2025-11-14,2025-11-07,2025-10-31",
+      "human_decision": "pending",
+      "approved_rate": null,
+      "reviewer": "",
+      "review_timestamp": "",
+      "review_notes": ""
+    }
+  ]
+}

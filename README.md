@@ -35,3 +35,7 @@ No model, vendor, PMS, CRS, or RMS is required. JSON and CSV contracts are the s
 - Recommendations are bounded by property-configured floors, ceilings, inventory scarcity, pace, market position, and human overrides.
 - A missing signal is not treated as a zero signal.
 - The toolkit recommends; an authorized human approves and publishes.
+
+## Offline Review Outputs
+
+See [REVIEW_WORKFLOW.md](REVIEW_WORKFLOW.md) for the provisional empirical pickup engine, sample HTML report, editable XLSX/CSV, human decisions and approved-rate record. This workflow does not yet complete the full research specification.

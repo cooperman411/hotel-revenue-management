@@ -1,0 +1,35 @@
+{
+  "approval_records": [
+    {
+      "recommendation_id": "177d0a4eabdaef27910f",
+      "decision": "modify",
+      "approved_rate": 215,
+      "reviewer": "Synthetic Reviewer",
+      "review_timestamp": "2026-11-07T01:00:00+00:00",
+      "notes": "Fictional approval example only",
+      "original_recommended_rate": 230.0
+    }
+  ],
+  "approved_rates": [
+    {
+      "property_id": "synthetic-inn",
+      "stay_date": "2026-11-20",
+      "room_type": "standard",
+      "rate_plan": "BAR",
+      "current_rate": 200,
+      "currency": "USD",
+      "analysis_timestamp": "2026-11-06T23:00:00+00:00",
+      "recommendation_id": "177d0a4eabdaef27910f",
+      "approved_new_rate": 215,
+      "approval_record": {
+        "recommendation_id": "177d0a4eabdaef27910f",
+        "decision": "modify",
+        "approved_rate": 215,
+        "reviewer": "Synthetic Reviewer",
+        "review_timestamp": "2026-11-07T01:00:00+00:00",
+        "notes": "Fictional approval example only",
+        "original_recommended_rate": 230.0
+      }
+    }
+  ]
+}

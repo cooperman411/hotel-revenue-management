@@ -5,7 +5,8 @@ import csv
 import json
 import sys
 from collections import defaultdict
-from datetime import date, timedelta
+from datetime import date, datetime, time, timedelta
+from zoneinfo import ZoneInfo
 
 def clamp(value, lower, upper):
     return max(lower, min(upper, value))
@@ -35,7 +36,18 @@ def main():
     upper = float(policy["max_rate"])
     cap = float(policy.get("adjustment_cap_pct", .25))
     otb = defaultdict(float)
+    # A date-only analysis is the end of that calendar day at the property.
+    # Never substitute today's state for the state known at the cutoff.
+    cutoff = datetime.combine(date.fromisoformat(args.as_of) + timedelta(days=1), time.min,
+                              tzinfo=ZoneInfo(prop["timezone"]))
     for row in reservations:
+        if not row.get("booked_at"):
+            raise ValueError("reservation missing booked_at; on-the-books state cannot be reconstructed")
+        booked_at = datetime.fromisoformat(row["booked_at"].replace("Z", "+00:00"))
+        if booked_at.tzinfo is None:
+            raise ValueError("booked_at requires a timezone offset")
+        if booked_at >= cutoff:
+            continue
         if row.get("status") == "booked" and row["stay_date"][:10] >= args.as_of:
             otb[(row["stay_date"][:10], row["room_type"])] += float(row["room_nights"])
     output = []

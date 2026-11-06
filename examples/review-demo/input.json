@@ -1,0 +1,243 @@
+{
+  "as_of": "2026-11-06T23:00:00+00:00",
+  "start": "2026-11-20",
+  "days": 2,
+  "property": {
+    "property_id": "synthetic-inn",
+    "property_name": "Synthetic Inn",
+    "currency": "USD",
+    "room_types": [
+      {
+        "room_type": "standard"
+      }
+    ],
+    "rate_policy": {
+      "min_rate": 100,
+      "max_rate": 500,
+      "default_rate": 200,
+      "adjustment_cap_pct": 0.15
+    }
+  },
+  "inventory": [
+    {
+      "stay_date": "2026-10-30",
+      "room_type": "standard",
+      "sellable_rooms": 100,
+      "history_reliable": true
+    },
+    {
+      "stay_date": "2026-10-23",
+      "room_type": "standard",
+      "sellable_rooms": 100,
+      "history_reliable": true
+    },
+    {
+      "stay_date": "2026-10-16",
+      "room_type": "standard",
+      "sellable_rooms": 100,
+      "history_reliable": true
+    },
+    {
+      "stay_date": "2026-10-09",
+      "room_type": "standard",
+      "sellable_rooms": 100,
+      "history_reliable": true
+    },
+    {
+      "stay_date": "2025-11-21",
+      "room_type": "standard",
+      "sellable_rooms": 100,
+      "history_reliable": true
+    },
+    {
+      "stay_date": "2025-11-14",
+      "room_type": "standard",
+      "sellable_rooms": 100,
+      "history_reliable": true
+    },
+    {
+      "stay_date": "2025-11-07",
+      "room_type": "standard",
+      "sellable_rooms": 100,
+      "history_reliable": true
+    },
+    {
+      "stay_date": "2025-10-31",
+      "room_type": "standard",
+      "sellable_rooms": 100,
+      "history_reliable": true
+    },
+    {
+      "stay_date": "2026-11-20",
+      "room_type": "standard",
+      "sellable_rooms": 100,
+      "physical_rooms": 102,
+      "out_of_order_rooms": 2
+    }
+  ],
+  "reservations": [
+    {
+      "reservation_key": "3-30",
+      "stay_date": "2026-10-30",
+      "room_type": "standard",
+      "rooms": 10,
+      "adr": 180,
+      "status": "checked_out",
+      "booked_at": "2026-09-30T12:00:00+00:00"
+    },
+    {
+      "reservation_key": "3-3",
+      "stay_date": "2026-10-30",
+      "room_type": "standard",
+      "rooms": 80,
+      "adr": 180,
+      "status": "checked_out",
+      "booked_at": "2026-10-27T12:00:00+00:00"
+    },
+    {
+      "reservation_key": "4-30",
+      "stay_date": "2026-10-23",
+      "room_type": "standard",
+      "rooms": 10,
+      "adr": 180,
+      "status": "checked_out",
+      "booked_at": "2026-09-23T12:00:00+00:00"
+    },
+    {
+      "reservation_key": "4-3",
+      "stay_date": "2026-10-23",
+      "room_type": "standard",
+      "rooms": 80,
+      "adr": 180,
+      "status": "checked_out",
+      "booked_at": "2026-10-20T12:00:00+00:00"
+    },
+    {
+      "reservation_key": "5-30",
+      "stay_date": "2026-10-16",
+      "room_type": "standard",
+      "rooms": 10,
+      "adr": 180,
+      "status": "checked_out",
+      "booked_at": "2026-09-16T12:00:00+00:00"
+    },
+    {
+      "reservation_key": "5-3",
+      "stay_date": "2026-10-16",
+      "room_type": "standard",
+      "rooms": 80,
+      "adr": 180,
+      "status": "checked_out",
+      "booked_at": "2026-10-13T12:00:00+00:00"
+    },
+    {
+      "reservation_key": "6-30",
+      "stay_date": "2026-10-09",
+      "room_type": "standard",
+      "rooms": 10,
+      "adr": 180,
+      "status": "checked_out",
+      "booked_at": "2026-09-09T12:00:00+00:00"
+    },
+    {
+      "reservation_key": "6-3",
+      "stay_date": "2026-10-09",
+      "room_type": "standard",
+      "rooms": 80,
+      "adr": 180,
+      "status": "checked_out",
+      "booked_at": "2026-10-06T12:00:00+00:00"
+    },
+    {
+      "reservation_key": "52-30",
+      "stay_date": "2025-11-21",
+      "room_type": "standard",
+      "rooms": 10,
+      "adr": 180,
+      "status": "checked_out",
+      "booked_at": "2025-10-22T12:00:00+00:00"
+    },
+    {
+      "reservation_key": "52-3",
+      "stay_date": "2025-11-21",
+      "room_type": "standard",
+      "rooms": 80,
+      "adr": 180,
+      "status": "checked_out",
+      "booked_at": "2025-11-18T12:00:00+00:00"
+    },
+    {
+      "reservation_key": "53-30",
+      "stay_date": "2025-11-14",
+      "room_type": "standard",
+      "rooms": 10,
+      "adr": 180,
+      "status": "checked_out",
+      "booked_at": "2025-10-15T12:00:00+00:00"
+    },
+    {
+      "reservation_key": "53-3",
+      "stay_date": "2025-11-14",
+      "room_type": "standard",
+      "rooms": 80,
+      "adr": 180,
+      "status": "checked_out",
+      "booked_at": "2025-11-11T12:00:00+00:00"
+    },
+    {
+      "reservation_key": "54-30",
+      "stay_date": "2025-11-07",
+      "room_type": "standard",
+      "rooms": 10,
+      "adr": 180,
+      "status": "checked_out",
+      "booked_at": "2025-10-08T12:00:00+00:00"
+    },
+    {
+      "reservation_key": "54-3",
+      "stay_date": "2025-11-07",
+      "room_type": "standard",
+      "rooms": 80,
+      "adr": 180,
+      "status": "checked_out",
+      "booked_at": "2025-11-04T12:00:00+00:00"
+    },
+    {
+      "reservation_key": "55-30",
+      "stay_date": "2025-10-31",
+      "room_type": "standard",
+      "rooms": 10,
+      "adr": 180,
+      "status": "checked_out",
+      "booked_at": "2025-10-01T12:00:00+00:00"
+    },
+    {
+      "reservation_key": "55-3",
+      "stay_date": "2025-10-31",
+      "room_type": "standard",
+      "rooms": 80,
+      "adr": 180,
+      "status": "checked_out",
+      "booked_at": "2025-10-28T12:00:00+00:00"
+    },
+    {
+      "reservation_key": "current",
+      "stay_date": "2026-11-20",
+      "room_type": "standard",
+      "rooms": 30,
+      "adr": 190,
+      "status": "booked",
+      "booked_at": "2026-11-01T12:00:00+00:00"
+    }
+  ],
+  "rates": [
+    {
+      "stay_date": "2026-11-20",
+      "room_type": "standard",
+      "rate_plan": "BAR",
+      "rate": 200,
+      "currency": "USD",
+      "observed_at": "2026-11-06T22:00:00+00:00"
+    }
+  ]
+}

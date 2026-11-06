@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Vendor-neutral approved rate change",
+  "type": "object",
+  "required": [
+    "property_id",
+    "stay_date",
+    "room_type",
+    "rate_plan",
+    "current_rate",
+    "approved_new_rate",
+    "currency",
+    "approval_record",
+    "recommendation_id",
+    "analysis_timestamp"
+  ],
+  "properties": {
+    "approved_new_rate": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "current_rate": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "approval_record": {
+      "type": "object",
+      "required": [
+        "decision",
+        "reviewer",
+        "review_timestamp",
+        "original_recommended_rate",
+        "approved_rate"
+      ],
+      "properties": {
+        "decision": {
+          "enum": [
+            "approve",
+            "modify"
+          ]
+        },
+        "reviewer": {
+          "type": "string",
+          "minLength": 1
+        },
+        "review_timestamp": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "property_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "stay_date": {
+      "type": "string",
+      "minLength": 1
+    },
+    "room_type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "rate_plan": {
+      "type": "string",
+      "minLength": 1
+    },
+    "currency": {
+      "type": "string",
+      "minLength": 1
+    },
+    "recommendation_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "analysis_timestamp": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}
