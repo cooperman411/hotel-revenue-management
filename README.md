@@ -8,7 +8,7 @@ An AI/LLM-agnostic, human-supervised toolkit for hotel revenue audits and proper
 - `skills/hotel-rate-optimizer/` — produce explainable daily rate recommendations for a configurable 180+ day horizon.
 - `shared/` — intake questionnaire, normalized schemas, evidence rules, methodology, workflows, and report templates.
 - `scripts/` — deterministic, dependency-light validation and calculation helpers.
-- `adapters/` — generic CSV first, with Mews and market-data integration boundaries (Nuitee fetch implemented, rate shoppers documented).
+- `adapters/` - generic CSV first, with Mews and market-data integration boundaries (Veetal Connect API specified but not implemented yet, Nuitee removed, rate shoppers documented).
 - `reference-only/` — notes about the supplied Hospitality Manager / revenue-management reference.
 - `HOW_TO_USE_THIS_TOOLKIT.md` — human operating guide from questionnaire through approved action.
 

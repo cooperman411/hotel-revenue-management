@@ -46,7 +46,7 @@ The preferred long-term path is an approved adapter that retrieves only the comm
 The current project includes placeholders for:
 
 - Mews — PMS/API adapter boundary is documented, but the live connector is not implemented yet.
-- Market data - source-agnostic adapter boundary in `adapters/market-data/README.md`. Hotel rate shoppers (Lighthouse/OTA Insight, RateGain) are the recommended source for retail comp rates; `scripts/fetch_market_rates.py` implements a Nuitee LiteAPI fetcher (sandbox for testing, API key from the `NUITEELITE_API_KEY` environment variable) plus a manual CSV path.
+- Market data - source-agnostic adapter boundary in `adapters/market-data/README.md`. Hotel rate shoppers are the recommended source for retail comp rates: Lighthouse Rate Insight (formerly OTA Insight), RateGain Navigator, or Amadeus Hotelligence360, or any other subscribed rate shopping tool. Veetal Connect API is the live retail API path when the hotel has no rate shopper subscription, specified in `adapters/market-data/README.md`, but not implemented yet: no Veetal account has been created and `scripts/fetch_market_rates.py` does not have a Veetal mode yet. Nuitee is removed, killed Oct 21, 2026 for a terms of service violation, and its code still needs to be stripped from the repo. There is no CSV option for comp set. Veetal credit is per API request, 1.1765 credits for parity and 1.1765 credits for Expedia room detail, not per room/night or per room type. See the adapter README for the worked cost examples before choosing a plan.
 
 An API login or token should be supplied only through the approved connector's secret-management process. Do not paste credentials into questionnaires, CSV files, Markdown, prompts, or reports. The current toolkit does not request or store API credentials.
 
@@ -133,31 +133,14 @@ The market-rates option is optional. If it is unavailable, the output says so th
 
 ### Getting market data in
 
-`market_rates.csv` can come from three paths, all documented in `adapters/market-data/README.md`:
+`market_rates.csv` can come from two paths, all documented in `adapters/market-data/README.md`:
 
-1. **Rate shopper export (recommended for production):** export the comp-set report from Lighthouse/OTA Insight or RateGain and map it to the `market_rates` schema columns (`observed_at,stay_date,room_type,property_rate,comp_median_rate,comp_count`).
-2. **Nuitee LiteAPI (implemented):** fetch comp-set rates for a horizon of stay dates. The API key comes only from the `NUITEELITE_API_KEY` environment variable; without `--live` the script assumes a sandbox key.
+1. **Rate shopper export (recommended for production):** export the comp-set report from Lighthouse Rate Insight, RateGain Navigator, or Amadeus Hotelligence360, or any other subscribed rate shopping tool, and map it to the `market_rates` schema columns (`observed_at,stay_date,room_type,property_rate,comp_median_rate,comp_count`).
+2. **Veetal Connect API (live retail API path when the hotel has no rate shopper subscription, spec only, not implemented yet):** fetch live parity plus Expedia room detail for a comp set. One request is one hotel plus one stay, 1.1765 credits for parity and 1.1765 credits for Expedia, with all room types returned in the one Expedia call. The API key comes only from the `VEETAL_API_KEY` environment variable when the mode is built. Run the one-hotel, one-date playground test in the adapter README before writing the adapter, and record the exact credit deduction. Do not use a Feed API for the test.
 
-```text
-export NUITEELITE_API_KEY="<your sandbox key, never committed or pasted into files>"
+There is no CSV option for comp set. No one is going to hand-type comp rates for 90 to 180 days, and a PMS cannot export competitors' rates and availability. If the hotel has neither a rate shopper subscription nor Veetal, there is no comp signal for that run. The engine then runs without market data, lowers confidence, and says the market signal is missing.
 
-python3 scripts/fetch_market_rates.py \
-  --hotel-ids lp1897,lp3803c \
-  --as-of 2026-09-01 \
-  --days 14 \
-  --room-map work/comp-room-map.json \
-  --output inputs/market_rates.csv
-```
-
-The `--room-map` file maps supplier room labels (or `mappedRoomId`) to the property's room types, for example `{"Deluxe King Room": "deluxe", "SUITE": "suite"}`. Unmapped offers are skipped and counted, never guessed.
-
-3. **Manual CSV (no-API path, good for demos):** a hand-entered comp snapshot with columns `stay_date,room_type,comp_median_rate,comp_count,property_rate` is validated and rewritten into the canonical format.
-
-```text
-python3 scripts/fetch_market_rates.py \
-  --from-csv work/manual-comp-snapshot.csv \
-  --output inputs/market_rates.csv
-```
+Nuitee is not a path. It was killed Oct 21, 2026 for a terms of service violation.
 
 Market prices are a position signal, not ground truth. Record the source and freshness, keep `comp_count` honest, and let the engine's evidence rules handle thin data.
 
@@ -199,7 +182,7 @@ Ready now:
 Not implemented yet:
 
 - live Mews login/API retrieval;
-- live rate-shopper retrieval (Lighthouse/OTA Insight, RateGain); the adapter boundary is documented and the Nuitee/manual paths work;
+- live rate-shopper retrieval (Lighthouse Rate Insight, RateGain Navigator, Amadeus Hotelligence360); the adapter boundary is documented, Veetal is specified but not implemented yet, Nuitee is removed, and there is no CSV option for comp set;
 - automatic PDF/report extraction;
 - direct rate publication to a PMS, CRS, or RMS;
 - a machine-learned elasticity model;
