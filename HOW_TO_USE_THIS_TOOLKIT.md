@@ -46,7 +46,7 @@ The preferred long-term path is an approved adapter that retrieves only the comm
 The current project includes placeholders for:
 
 - Mews — PMS/API adapter boundary is documented, but the live connector is not implemented yet.
-- Market data - source-agnostic adapter boundary in `adapters/market-data/README.md`. Hotel rate shoppers are the recommended source for retail comp rates: Lighthouse Rate Insight (formerly OTA Insight), RateGain Navigator, or Amadeus Hotelligence360, or any other subscribed rate shopping tool. Veetal Connect API is the live retail API path when the hotel has no rate shopper subscription, specified in `adapters/market-data/README.md`, but not implemented yet: no Veetal account has been created and `scripts/fetch_market_rates.py` does not have a Veetal mode yet. Nuitee is removed, killed Oct 21, 2026 for a terms of service violation, and its code still needs to be stripped from the repo. There is no CSV option for comp set. Veetal credit is per API request, 1.1765 credits for parity and 1.1765 credits for Expedia room detail, not per room/night or per room type. See the adapter README for the worked cost examples before choosing a plan.
+- Market data - source-agnostic adapter boundary in `adapters/market-data/README.md`. Hotel rate shoppers are the recommended source for retail comp rates: Lighthouse Rate Insight (formerly OTA Insight), RateGain Navigator, or Amadeus Hotelligence360, or any other subscribed rate shopping tool. Veetal Connect API is the live retail API path when the hotel has no rate shopper subscription, specified in `adapters/market-data/README.md`, but not implemented yet: no Veetal account has been created and `scripts/fetch_market_rates.py` does not have a Veetal mode yet. There is no CSV option for comp set. Veetal credit is per API request, 1.1765 credits for parity and 1.1765 credits for Expedia room detail, not per room/night or per room type. See the adapter README for the worked cost examples before choosing a plan.
 
 An API login or token should be supplied only through the approved connector's secret-management process. Do not paste credentials into questionnaires, CSV files, Markdown, prompts, or reports. The current toolkit does not request or store API credentials.
 
@@ -140,7 +140,6 @@ The market-rates option is optional. If it is unavailable, the output says so th
 
 There is no CSV option for comp set. No one is going to hand-type comp rates for 90 to 180 days, and a PMS cannot export competitors' rates and availability. If the hotel has neither a rate shopper subscription nor Veetal, there is no comp signal for that run. The engine then runs without market data, lowers confidence, and says the market signal is missing.
 
-Nuitee is not a path. It was killed Oct 21, 2026 for a terms of service violation.
 
 Market prices are a position signal, not ground truth. Record the source and freshness, keep `comp_count` honest, and let the engine's evidence rules handle thin data.
 
@@ -182,7 +181,7 @@ Ready now:
 Not implemented yet:
 
 - live Mews login/API retrieval;
-- live rate-shopper retrieval (Lighthouse Rate Insight, RateGain Navigator, Amadeus Hotelligence360); the adapter boundary is documented, Veetal is specified but not implemented yet, Nuitee is removed, and there is no CSV option for comp set;
+- live rate-shopper retrieval (Lighthouse Rate Insight, RateGain Navigator, Amadeus Hotelligence360); the adapter boundary is documented, Veetal is specified but not implemented yet, and there is no CSV option for comp set;
 - automatic PDF/report extraction;
 - direct rate publication to a PMS, CRS, or RMS;
 - a machine-learned elasticity model;

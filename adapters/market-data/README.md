@@ -47,8 +47,7 @@ rate is not faked as zero). See `scripts/calculate_rates.py` and
    Hotels, and Airbnb rates as structured JSON, with like-for-like comparison
    by board and cancellation terms. It uses authorized data partnerships; it
    is not a scraping service. This is the live retail path when a hotel
-   wants real OTA retail prices. It replaces the removed Nuitee path, which
-   is not to be used for any reason.
+   wants real OTA retail prices.
 
    Status, Nov 5, 2026: no Veetal account has been created, no live call has
    been run, and `scripts/fetch_market_rates.py` does not have a Veetal mode
@@ -174,15 +173,6 @@ rate is not faked as zero). See `scripts/calculate_rates.py` and
       Note any field that does not map cleanly, and do not force it.
    6. Do not call a Feed API in this test.
 
-**Nuitee LiteAPI (removed, do not use).**
-   Nuitee is out as a market-data source. Kerry killed it Oct 21, 2026
-   because this use case violates Nuitee's terms of service. That decision
-   supersedes the earlier state where Nuitee LiteAPI was the implemented
-   path in `scripts/fetch_market_rates.py`.
-   The Nuitee code is still in the repo today, and it still needs to be
-   stripped from the repo and from the adapter docs. Until that cleanup is
-   done, do not present Nuitee as a sandbox, proxy, demo, or fallback path,
-   and do not run a live Nuitee pull.
 ## No CSV option for comp set
 
 There is no CSV option for comp-set rates and availability.
