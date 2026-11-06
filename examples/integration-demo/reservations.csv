@@ -1,0 +1,2 @@
+reservation_key,property_id,stay_date,room_type,rate_plan,rooms,adr,currency,status,booked_at
+anon-1,H1,2026-11-20,DBL,RACK,2,200,USD,booked,2026-11-01T10:00:00+00:00

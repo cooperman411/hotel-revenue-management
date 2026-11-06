@@ -1,0 +1,18 @@
+{
+  "property_id": "synthetic-inn",
+  "currency": "USD",
+  "authorized_reviewers": [
+    "Synthetic Reviewer"
+  ],
+  "destination_mappings": {
+    "property_id": {
+      "synthetic-inn": "MOCK-H1"
+    },
+    "room_type": {
+      "standard": "STD"
+    },
+    "rate_plan": {
+      "BAR": "FLEX"
+    }
+  }
+}

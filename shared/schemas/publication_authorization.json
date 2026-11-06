@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Publication Authorization",
+  "type": "object",
+  "required": [
+    "decision",
+    "batch_hash",
+    "reviewer",
+    "authorized_at"
+  ],
+  "properties": {
+    "decision": {
+      "const": "authorize_publication"
+    },
+    "batch_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "reviewer": {
+      "type": "string",
+      "minLength": 1
+    },
+    "authorized_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

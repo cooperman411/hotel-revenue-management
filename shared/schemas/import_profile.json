@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Import Profile",
+  "type": "object",
+  "required": [
+    "property_id",
+    "currency",
+    "mappings",
+    "tables"
+  ],
+  "properties": {
+    "property_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "currency": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mappings": {
+      "type": "object",
+      "required": [
+        "property_id",
+        "room_type",
+        "rate_plan"
+      ]
+    },
+    "tables": {
+      "type": "object"
+    }
+  }
+}

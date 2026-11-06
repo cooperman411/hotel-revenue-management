@@ -1,0 +1,35 @@
+test_future_booking_is_not_on_the_books (test_as_of.AsOfTest) ... ok
+test_all_imports (test_data_workflow.IntegrationTests) ... ok
+test_changed_state (test_data_workflow.IntegrationTests) ... ok
+test_format_mapping (test_data_workflow.IntegrationTests) ... ok
+test_incompatible_competitor (test_data_workflow.IntegrationTests) ... ok
+test_invalid_currency (test_data_workflow.IntegrationTests) ... ok
+test_missing_destination (test_data_workflow.IntegrationTests) ... ok
+test_modified_rate_exported (test_data_workflow.IntegrationTests) ... ok
+test_no_competitors_assembly (test_data_workflow.IntegrationTests) ... ok
+test_partial_failure_no_retry (test_data_workflow.IntegrationTests) ... ok
+test_publication_controls_and_audit (test_data_workflow.IntegrationTests) ... ok
+test_reject_defer_pending_excluded (test_data_workflow.IntegrationTests) ... ok
+test_stale_approval (test_data_workflow.IntegrationTests) ... ok
+test_stale_competitor (test_data_workflow.IntegrationTests) ... ok
+test_unauthorized_reviewer (test_data_workflow.IntegrationTests) ... ok
+test_uncertain_write_audited (test_data_workflow.IntegrationTests) ... ok
+test_unmapped (test_data_workflow.IntegrationTests) ... ok
+test_approval_modification_rejection (test_review_engine.ReviewTests) ... ok
+test_bad_history (test_review_engine.ReviewTests) ... ok
+test_cancellation_asof (test_review_engine.ReviewTests) ... ok
+test_duplicate_conflict (test_review_engine.ReviewTests) ... ok
+test_future_booking_leak (test_review_engine.ReviewTests) ... ok
+test_group_double_count (test_review_engine.ReviewTests) ... ok
+test_inventory_reconciliation (test_review_engine.ReviewTests) ... ok
+test_low_occupancy_forward_compression (test_review_engine.ReviewTests) ... ok
+test_missing_current_rate (test_review_engine.ReviewTests) ... ok
+test_missing_inventory_coverage (test_review_engine.ReviewTests) ... ok
+test_multinight (test_review_engine.ReviewTests) ... ok
+test_pending_not_approved (test_review_engine.ReviewTests) ... ok
+test_workbook_values (test_review_engine.ReviewTests) ... ok
+
+----------------------------------------------------------------------
+Ran 30 tests in 0.063s
+
+OK

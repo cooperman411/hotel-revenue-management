@@ -39,3 +39,7 @@ No model, vendor, PMS, CRS, or RMS is required. JSON and CSV contracts are the s
 ## Offline Review Outputs
 
 See [REVIEW_WORKFLOW.md](REVIEW_WORKFLOW.md) for the provisional empirical pickup engine, sample HTML report, editable XLSX/CSV, human decisions and approved-rate record. This workflow does not yet complete the full research specification.
+
+## Data Imports and Approved Publishing
+
+See [DATA_AND_PUBLISHING.md](DATA_AND_PUBLISHING.md) for reusable CSV mapping, required export fields, approved-only rate exports, and the offline publishing protocol. Live PMS publishing remains disabled. No PMS-specific CSV format is currently verified.

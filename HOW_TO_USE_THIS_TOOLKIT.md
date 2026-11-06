@@ -202,3 +202,7 @@ For a first hotel, use a small, controlled run:
 7. expand only after the hotel trusts the evidence and approval process.
 
 This creates a useful human/LLM-assisted RMS workflow without making unsupported promises about precision.
+
+## Data Imports and Approved Publishing
+
+See [DATA_AND_PUBLISHING.md](DATA_AND_PUBLISHING.md) for reusable CSV mapping, required export fields, approved-only rate exports, and the offline publishing protocol. Live PMS publishing remains disabled. No PMS-specific CSV format is currently verified.

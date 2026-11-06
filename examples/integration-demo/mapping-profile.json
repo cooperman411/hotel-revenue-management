@@ -1,0 +1,77 @@
+{
+  "property_id": "synthetic-inn",
+  "currency": "USD",
+  "mappings": {
+    "property_id": {
+      "H1": "synthetic-inn"
+    },
+    "room_type": {
+      "DBL": "standard"
+    },
+    "rate_plan": {
+      "RACK": "BAR"
+    }
+  },
+  "tables": {
+    "reservations": {
+      "columns": {
+        "reservation_key": "reservation_key",
+        "property_id": "property_id",
+        "stay_date": "stay_date",
+        "room_type": "room_type",
+        "rate_plan": "rate_plan",
+        "rooms": "rooms",
+        "adr": "adr",
+        "currency": "currency",
+        "status": "status",
+        "booked_at": "booked_at"
+      }
+    },
+    "inventory": {
+      "columns": {
+        "property_id": "property_id",
+        "stay_date": "stay_date",
+        "room_type": "room_type",
+        "sellable_rooms": "sellable_rooms"
+      }
+    },
+    "rates": {
+      "columns": {
+        "property_id": "property_id",
+        "stay_date": "stay_date",
+        "room_type": "room_type",
+        "rate_plan": "rate_plan",
+        "rate": "rate",
+        "currency": "currency",
+        "observed_at": "observed_at"
+      }
+    },
+    "competitors": {
+      "columns": {
+        "hotel_id": "hotel_id",
+        "stay_date": "stay_date",
+        "room_type": "room_type",
+        "rate_plan": "rate_plan",
+        "rate": "rate",
+        "currency": "currency",
+        "observed_at": "observed_at",
+        "occupancy": "occupancy",
+        "los": "los",
+        "tax_basis": "tax_basis",
+        "cancellation": "cancellation",
+        "meal_plan": "meal_plan",
+        "channel": "channel",
+        "source": "source",
+        "reliability": "reliability",
+        "availability": "availability"
+      },
+      "comparison_conditions": {
+        "occupancy": 2,
+        "los": 1,
+        "tax_basis": "included",
+        "cancellation": "flexible",
+        "meal_plan": "room_only"
+      }
+    }
+  }
+}

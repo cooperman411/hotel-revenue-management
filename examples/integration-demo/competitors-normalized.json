@@ -1,0 +1,29 @@
+{
+  "rows": [
+    {
+      "hotel_id": "comp-1",
+      "stay_date": "2026-11-20",
+      "room_type": "standard",
+      "rate_plan": "BAR",
+      "rate": 240.0,
+      "currency": "USD",
+      "observed_at": "2026-11-07T01:00:00+00:00",
+      "occupancy": 2,
+      "los": 1,
+      "tax_basis": "included",
+      "cancellation": "flexible",
+      "meal_plan": "room_only",
+      "channel": "direct",
+      "source": "customer-authorized-export",
+      "reliability": "authorized_export",
+      "availability": "available"
+    }
+  ],
+  "provenance": {
+    "source_file": "competitors.csv",
+    "sha256": "3e6750ed0ba5a1b7f9b22419d48ad10d3b83d7f5b058cb60590235f092fd81f9",
+    "profile_hash": "f89de8aaa965e0249774b546104d90d865848d16c9a1987416b9098269598db8",
+    "import_as_of": "2026-11-07T02:00:00+00:00",
+    "table": "competitors"
+  }
+}

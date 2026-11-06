@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Approved Export",
+  "type": "object",
+  "required": [
+    "rows",
+    "audit",
+    "generated_at",
+    "live_publish_enabled"
+  ],
+  "properties": {
+    "rows": {
+      "type": "array"
+    },
+    "audit": {
+      "type": "array"
+    },
+    "generated_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "live_publish_enabled": {
+      "const": false
+    }
+  }
+}

@@ -1,0 +1,2 @@
+hotel_id,stay_date,room_type,rate_plan,rate,currency,observed_at,occupancy,los,tax_basis,cancellation,meal_plan,channel,source,reliability,availability
+comp-1,2026-11-20,DBL,RACK,240,USD,2026-11-07T01:00:00+00:00,2,1,included,flexible,room_only,direct,customer-authorized-export,authorized_export,available

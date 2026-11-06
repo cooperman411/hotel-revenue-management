@@ -1,0 +1,45 @@
+{
+  "rows": [
+    {
+      "property_id": "MOCK-H1",
+      "room_type": "STD",
+      "rate_plan": "FLEX",
+      "stay_date": "2026-11-20",
+      "approved_rate": 215,
+      "currency": "USD",
+      "recommendation_id": "177d0a4eabdaef27910f",
+      "approval_reference": "d1f5ceb4cb069854d4c3c7afaece3f38ae6c6a51d86effc62cbd630e08212bd4"
+    }
+  ],
+  "audit": [
+    {
+      "property_id": "synthetic-inn",
+      "stay_date": "2026-11-20",
+      "room_type": "standard",
+      "rate_plan": "BAR",
+      "current_rate": 200,
+      "currency": "USD",
+      "analysis_timestamp": "2026-11-06T23:00:00+00:00",
+      "recommendation_id": "177d0a4eabdaef27910f",
+      "approved_new_rate": 215,
+      "approval_record": {
+        "recommendation_id": "177d0a4eabdaef27910f",
+        "decision": "modify",
+        "approved_rate": 215,
+        "reviewer": "Synthetic Reviewer",
+        "review_timestamp": "2026-11-07T01:00:00+00:00",
+        "notes": "Fictional approval example only",
+        "original_recommended_rate": 230.0
+      },
+      "approval_reference": "d1f5ceb4cb069854d4c3c7afaece3f38ae6c6a51d86effc62cbd630e08212bd4",
+      "destination": {
+        "property_id": "MOCK-H1",
+        "room_type": "STD",
+        "rate_plan": "FLEX"
+      },
+      "analysis_hash": "e794c06e5125320b7b85086b6f55fb310f62944e0a07eaec41bc3e240d80d9a7"
+    }
+  ],
+  "generated_at": "2026-11-07T02:00:00+00:00",
+  "live_publish_enabled": false
+}
