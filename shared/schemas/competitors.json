@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Optional competitor export evidence",
+  "type": "object",
+  "required": [
+    "hotel_id",
+    "stay_date",
+    "room_type",
+    "rate_plan",
+    "rate",
+    "currency",
+    "observed_at",
+    "occupancy",
+    "los",
+    "tax_basis",
+    "cancellation",
+    "meal_plan",
+    "channel",
+    "source",
+    "reliability",
+    "availability"
+  ],
+  "properties": {
+    "hotel_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "stay_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "room_type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "rate_plan": {
+      "type": "string",
+      "minLength": 1
+    },
+    "rate": {
+      "type": "number",
+      "minimum": 0
+    },
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "observed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "occupancy": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "los": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "tax_basis": {
+      "type": "string",
+      "minLength": 1
+    },
+    "cancellation": {
+      "type": "string",
+      "minLength": 1
+    },
+    "meal_plan": {
+      "type": "string",
+      "minLength": 1
+    },
+    "channel": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reliability": {
+      "const": "authorized_export"
+    },
+    "availability": {
+      "enum": [
+        "available",
+        "unavailable",
+        "unknown"
+      ]
+    }
+  }
+}

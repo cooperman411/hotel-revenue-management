@@ -1,37 +1,11 @@
-# AI/LLM-agnostic Harness Contract
+# Assistant-neutral execution contract
 
-The harness may be a script, notebook, workflow tool, agent, or LLM. It must preserve the same boundaries:
+Keep original evidence, normalized inputs, deterministic analysis, interpretation, human decisions and approved exports separate. The current input is `shared/schemas/analysis_input.json`; property, reservation, inventory, published-rate and competitor row contracts are in the same folder.
 
-```text
-inputs -> validation -> deterministic calculations -> structured findings -> human decision -> approved action
-```
+CSV imports carry `rows` and provenance, including property, currency, source hash, mapping-profile hash and import timestamp. `scripts/data_workflow.py analyze` verifies their property and currency before joining internal data. An assembled input can call `scripts/review_engine.py` directly. Competitors remain separate evidence.
 
-## Input envelope
+The engine writes `analysis.json`, `summary.md`, `summary.html`, `recommendations.csv`, `recommendations.xlsx` and an empty approval record. Forecast confidence is `provisional` or `insufficient`. Descriptive audit findings use `evidence_strength` to describe source support, not forecast accuracy.
 
-```json
-{
-  "run_id": "string",
-  "as_of_date": "YYYY-MM-DD",
-  "property": "property.json",
-  "reservations": "reservations.csv",
-  "inventory": "inventory.csv",
-  "market_rates": "market_rates.csv"
-}
-```
+Keep analysis unchanged when recording human decisions. `review_approvals.py` records decisions; `data_workflow.py export` produces approved-only CSV and an audit. Rate approval and publication authorization are separate. `publishing.py` accepts only its offline mock destination; live writing is disabled.
 
-`market_rates` is optional. A missing file is an explicit data gap.
-
-## Output envelope
-
-```json
-{
-  "run_id": "string",
-  "status": "needs_review",
-  "findings": [],
-  "recommendations": [],
-  "data_gaps": [],
-  "human_review": {"decision": "pending", "reviewer": null, "timestamp": null}
-}
-```
-
-The model layer may summarize or explain but must not alter source facts, hide data gaps, or turn pending recommendations into approved actions. Any publisher is a separate, authorized integration.
+An assistant may explain evidence but must not alter source facts, hide gaps or convert pending recommendations into approved changes. See the [operating guide](../HOW_TO_USE_THIS_TOOLKIT.md).

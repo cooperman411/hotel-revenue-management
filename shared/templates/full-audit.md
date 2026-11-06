@@ -28,7 +28,7 @@
 
 ## Findings register
 
-| ID | Classification | Finding | Evidence | Sample | Confidence | Gap |
+| ID | Classification | Finding | Evidence | Sample | Evidence strength | Gap |
 |---|---|---|---|---:|---|---|
 
 ## Recommendations

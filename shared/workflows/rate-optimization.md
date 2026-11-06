@@ -1,9 +1,9 @@
-# Rate Optimization Workflow
+# Rate review workflow
 
-1. Confirm the as-of date and horizon.
-2. Validate `property.json`, historical/on-books reservations, inventory, and optional market rates.
-3. Run `scripts/calculate_history.py --as-of <as-of-date>` to keep future on-books stays out of the historical baseline, then run `scripts/calculate_rates.py`.
-4. Review each recommendation's reason, range, confidence, and data gaps.
-5. Have an authorized human approve, modify, or reject recommendations.
-6. Publish approved changes through the property's existing system and retain the approval record.
-7. Measure pickup, ADR, occupancy, RevPAR, cancellation, and displacement outcomes; feed outcomes back into the next review.
+1. Confirm property, timezone, currency, explicit analysis timestamp, forecast dates, room types, rate plans, guardrails and approval owner.
+2. Import reservation, inventory and optional published-rate exports with checked mappings. Retain source provenance. Keep competitor exports separate.
+3. Run `scripts/data_workflow.py analyze`, or pass an assembled current input to `scripts/review_engine.py`.
+4. Review coverage, provisional scenarios, reference rates, configured movements and gaps in the report and workbook.
+5. Record explicit human decisions with `scripts/review_approvals.py`; retain original analysis and decisions.
+6. Generate approved-only CSV with `scripts/data_workflow.py export`. Check destination format and mappings before any separately authorized manual import.
+7. Record verified destination outcomes separately. Live publishing is disabled; the included API protocol is an offline mock only.

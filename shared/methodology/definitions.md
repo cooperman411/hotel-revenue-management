@@ -5,7 +5,7 @@
 - **RevPAR**: room revenue divided by sellable rooms.
 - **OTB**: on the books; reservations known as of the analysis date.
 - **Pace**: OTB rooms or revenue at a lead time compared with a comparable historical snapshot.
-- **Pickup**: additional room nights booked during a defined interval.
+- **Pickup**: net change in booked room nights between timestamps, including effective cancellations and no-shows.
 - **Compression**: demand likely to exceed available inventory or materially reduce remaining availability.
 - **BAR**: best available rate or the property's configured public base rate.
 - **Comp position**: the property's rate relative to a defined, time-stamped comparison set.

@@ -3,6 +3,7 @@
     "property_id": "synthetic-inn",
     "property_name": "Synthetic Inn",
     "currency": "USD",
+    "timezone": "UTC",
     "room_types": [
       {
         "room_type": "standard"

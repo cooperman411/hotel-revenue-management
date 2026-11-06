@@ -1,16 +1,16 @@
 # Executive Summary
 
-## Scope and confidence
+## Scope and evidence strength
 
 - Property:
 - Analysis period:
 - As-of date:
 - Data coverage:
-- Overall confidence:
+- Overall evidence strength:
 
 ## What happened
 
-1. [Finding — classification, evidence, sample size, confidence]
+1. [Finding — classification, evidence, sample size, evidence strength]
 2. [Finding]
 3. [Finding]
 

@@ -15,9 +15,9 @@ Use the normalized inputs in `../../shared/schemas/` and the evidence rules in `
 
 1. Read the intake and identify property context, date scope, comparison sets, objectives, and human decision rights.
 2. Validate files and reject direct guest/employee PII. Report missing fields before drawing conclusions.
-3. Run deterministic history and pace calculations in `../../scripts/` where applicable.
+3. Follow `../../HOW_TO_USE_THIS_TOOLKIT.md` to import evidence and run the provisional future review. Derive descriptive historical metrics transparently from supplied evidence; the engine does not calculate a complete historical audit.
 4. Audit three dimensions separately: past performance, future outlook, and RM process maturity.
-5. Classify every statement as observed, derived, inferred, or recommended; attach source fields, period, sample size, and confidence.
+5. Classify every statement as observed, derived, inferred, or recommended; attach source fields, period, sample size, and descriptive evidence strength. Forecast confidence remains `provisional` or `insufficient` under `../../REVIEW_WORKFLOW.md`.
 6. Produce the relevant template from `../../shared/templates/` and an action register with owner, timing, expected impact, and validation metric.
 7. Stop short of publishing rates or restrictions. A human must approve operational changes.
 

@@ -1,17 +1,114 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Daily rate recommendation",
+  "title": "Provisional daily rate recommendation",
   "type": "object",
-  "required": ["recommendation_id", "stay_date", "room_type", "recommended_rate", "confidence", "rationale"],
+  "required": [
+    "recommendation_id",
+    "property_id",
+    "analysis_timestamp",
+    "stay_date",
+    "room_type",
+    "rate_plan",
+    "currency",
+    "current_rate",
+    "recommended_rate",
+    "confidence",
+    "rationale",
+    "human_decision"
+  ],
   "properties": {
-    "recommendation_id": {"type": "string"},
-    "stay_date": {"type": "string", "format": "date"},
-    "room_type": {"type": "string"},
-    "recommended_rate": {"type": "number", "exclusiveMinimum": 0},
-    "low_rate": {"type": "number", "exclusiveMinimum": 0},
-    "high_rate": {"type": "number", "exclusiveMinimum": 0},
-    "confidence": {"type": "string", "enum": ["high", "medium", "low"]},
-    "rationale": {"type": "string"},
-    "human_decision": {"type": "string", "enum": ["pending", "approved", "modified", "rejected"]}
+    "property_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "stay_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "room_type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "recommendation_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "analysis_timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "rate_plan": {
+      "type": "string",
+      "minLength": 1
+    },
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "current_rate": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "recommended_rate": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "confidence": {
+      "enum": [
+        "provisional",
+        "insufficient"
+      ]
+    },
+    "rationale": {
+      "type": "string",
+      "minLength": 1
+    },
+    "human_decision": {
+      "const": "pending"
+    },
+    "approved_rate": {
+      "type": "null"
+    },
+    "expected_occupancy": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "demand_p10": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "demand_p50": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "demand_p90": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "sellout_probability": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "expected_displaced_rooms": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "warnings": {
+      "type": "string"
+    }
   }
 }

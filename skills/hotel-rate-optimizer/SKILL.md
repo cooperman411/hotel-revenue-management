@@ -1,38 +1,18 @@
 ---
 name: hotel-rate-optimizer
-description: Generate explainable, property-specific daily hotel rate recommendations for future dates using historical behavior, on-books pace, inventory, market rates, and human review.
+description: Prepare and explain provisional hotel rate recommendations from normalized booking and inventory exports, with offline human review and approved-only CSV outputs.
 ---
+# Hotel rate review
 
-# Hotel Rate Optimizer
+Use for daily rate guidance over an explicit date range. Give the assistant access to the whole repository, including shared resources and scripts.
 
-Use this skill when the user needs daily rate guidance, a 180/365-day rate plan, pace-based pricing, BAR recommendations, or a lightweight human-supervised RMS workflow.
+Read `../../HOW_TO_USE_THIS_TOOLKIT.md` for the operating path, `../../REVIEW_WORKFLOW.md` for the current engine and `../../DATA_AND_PUBLISHING.md` for mappings and approved exports. The engine is `../../scripts/review_engine.py`; current input schemas are in `../../shared/schemas/`.
 
-## Contract
+1. Confirm the property, timezone, currency, analysis timestamp, date range, room types, rate plans, guardrails and approval owner.
+2. Import authorized exports with checked reusable mappings. Exclude guest/employee personal information and credentials. Require reservation, inventory, property and currency consistency. Competitor exports are optional, separate evidence.
+3. Run `data_workflow.py analyze` on normalized imports, or `review_engine.py` on an assembled input. Preserve the original evidence and analysis.
+4. Explain current bookings, observed pickup, provisional scenarios, configured movements and gaps separately. Forecast confidence is `provisional` or `insufficient`. Empirical sellout frequency is not a calibrated probability. Configured movements are not estimated optimal prices.
+5. Present the summary and editable workbook/CSV. Record explicit human decisions in JSON and export approved rates using the documented commands. Transfer spreadsheet decisions explicitly; do not imply automatic ingestion.
+6. Require separate authorization and verified destination mappings before operational action. The toolkit cannot write to live PMS systems. The standard CSV is not a verified PMS upload.
 
-Use the normalized inputs in `../../shared/schemas/`. The deterministic engine is `../../scripts/calculate_rates.py`; its output is advisory and must be reviewed before publication.
-
-## Workflow
-
-1. Confirm the as-of date, horizon, room types, rate-plan scope, currency, floors/ceilings, and approval owner.
-2. Validate that inputs contain no guest or employee PII and identify absent signals such as market rates, event data, or historical booking snapshots.
-3. Establish property-specific baselines from history: date-of-week/season ADR, occupancy response, lead-time pace, cancellation behavior, and sample size.
-4. Calculate current OTB occupancy and pace against comparable historical booking curves where snapshots exist.
-5. Generate a bounded recommendation with a recommended rate, range, confidence, rationale, and explicit data gaps.
-6. Apply human overrides only with a recorded reason, approver, and expiry/review date.
-7. Export the recommendation register. Do not push rates to a live system without separate authorized integration and approval.
-
-## Decision rules
-
-- Never hard-code rules such as “Saturday +25%” or “80% occupancy +30%.” Estimate premiums and discounts from this property's own comparable observations.
-- Prefer robust medians/percentiles and minimum sample sizes over unstable small segments.
-- Treat comp-set data as a position signal, not as a mandate to follow competitors.
-- Bound outputs by the property's configured minimum and maximum rates and keep a human-readable explanation for each change.
-- If a signal is unavailable, omit it and lower confidence; do not substitute a zero or pretend the signal was observed.
-
-## References to read as needed
-
-- `../../shared/methodology/evidence-rules.md`
-- `../../shared/methodology/data-quality.md`
-- `../../shared/methodology/rate-optimization.md`
-- `../../shared/workflows/rate-optimization.md`
-- `../../shared/workflows/human-review.md`
+Low current occupancy alone must not justify a discount. Do not introduce undocumented multipliers, invent demand or market observations, or claim accuracy, optimal pricing or revenue uplift. Missing competitors do not lower model confidence. Record audit evidence using `../../shared/methodology/evidence-rules.md` and apply `../../shared/workflows/human-review.md`.

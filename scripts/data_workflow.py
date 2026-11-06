@@ -3,6 +3,7 @@
 import argparse,csv,hashlib,json,math,re
 from datetime import date,timedelta
 from pathlib import Path
+from zoneinfo import ZoneInfo
 from review_engine import stamp,normalize,approvals
 
 FIELDS={
@@ -78,11 +79,12 @@ def import_csv(path,profile,kind,as_of):
     if key in seen: raise ValueError('Duplicate record')
     seen.add(key);result.append(row)
    except (KeyError,ValueError,TypeError) as exc: raise ValueError(f'{kind} CSV row {number}: {exc}') from exc
- return {'rows':result,'provenance':{'source_file':Path(path).name,'sha256':hashlib.sha256(Path(path).read_bytes()).hexdigest(),'profile_hash':digest(profile),'import_as_of':as_of,'table':kind}}
+ return {'rows':result,'provenance':{'source_file':Path(path).name,'sha256':hashlib.sha256(Path(path).read_bytes()).hexdigest(),'profile_hash':digest(profile),'import_as_of':as_of,'table':kind,'property_id':profile['property_id'],'currency':profile['currency']}}
 
 EXPORT_FIELDS=['property_id','stay_date','room_type','rate_plan','approved_rate','currency','recommendation_id','approval_reference']
 def approved_export(report,decisions,config,now):
- at=stamp(now);records=approvals(report,decisions);rows=[];audit=[];seen=set()
+ at=stamp(now).astimezone(ZoneInfo(config['timezone']));records=approvals(report,decisions);rows=[];audit=[];seen=set()
+ if config['timezone']!=report['property']['timezone']: raise ValueError('Export timezone does not match property')
  for r in records['approved_rates']:
   a=r['approval_record'];approved_at=stamp(a['review_timestamp'])
   if a['reviewer'] not in config.get('authorized_reviewers',[]): raise ValueError('Reviewer is not in configured approval authority')
@@ -116,20 +118,30 @@ def main():
  p=argparse.ArgumentParser();sub=p.add_subparsers(dest='command',required=True)
  i=sub.add_parser('import');i.add_argument('csv');i.add_argument('profile');i.add_argument('kind',choices=FIELDS);i.add_argument('as_of');i.add_argument('output')
  e=sub.add_parser('export');e.add_argument('analysis');e.add_argument('decisions');e.add_argument('config');e.add_argument('now');e.add_argument('directory')
+ a=sub.add_parser('analyze')
+ for name in ('property','reservations','inventory','as-of','start','output'): a.add_argument('--'+name,required=True)
+ a.add_argument('--rates');a.add_argument('--days',required=True,type=int)
  a=p.parse_args();load=lambda f:json.loads(Path(f).read_text())
  if a.command=='import':Path(a.output).write_text(json.dumps(import_csv(a.csv,load(a.profile),a.kind,a.as_of),indent=2))
- else:
+ elif a.command=='export':
   result=approved_export(load(a.analysis),load(a.decisions),load(a.config),a.now);d=Path(a.directory);d.mkdir(parents=True,exist_ok=True)
   csv_write(d/'approved-rates.csv',result['rows'],EXPORT_FIELDS);(d/'approval-audit.json').write_text(json.dumps(result,indent=2))
-if __name__=='__main__':main()
+ else:
+  from review_engine import write
+  imports={k:load(getattr(a,k)) for k in ('reservations','inventory','rates') if getattr(a,k)}
+  write(assemble_analysis(load(a.property),imports,a.as_of,a.start,a.days),a.output)
 
 
 def assemble_analysis(property_config, imports, as_of, start, days):
- """Join normalized imports to the Task 4 engine without treating absent competitors as zero."""
+ """Join normalized imports to the offline review engine without treating absent competitors as zero."""
  from review_engine import analyze
  if any(k not in imports for k in ('reservations','inventory')): raise ValueError('Reservations and inventory are required')
  for kind,item in imports.items():
   if item['provenance']['table']!=kind or stamp(item['provenance']['import_as_of'])>stamp(as_of): raise ValueError('Wrong table or future import')
+  if item['provenance']['property_id']!=property_config['property_id']: raise ValueError('Import property does not match analysis property')
+  if item['provenance']['currency']!=property_config['currency']: raise ValueError('Import currency does not match analysis currency')
  data={'property':property_config,'as_of':as_of,'start':start,'days':days,**{k:imports[k]['rows'] for k in ('reservations','inventory','rates') if k in imports}}
  data['rate_plans']=sorted({r['rate_plan'] for r in data.get('rates',[])}) or ['BAR']
  return analyze(data)
+
+if __name__=='__main__':main()

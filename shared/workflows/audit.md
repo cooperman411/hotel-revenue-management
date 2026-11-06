@@ -1,8 +1,8 @@
-# Audit Workflow
+# Audit workflow
 
-1. Complete `shared/intake/questionnaire.md`.
-2. Load normalized JSON/CSV and run `scripts/validate_input.py`.
-3. Run `scripts/calculate_history.py` for daily, segment, and booking-window summaries.
-4. Review past performance, future outlook, and RM process separately.
-5. Record findings using the evidence rules and produce `full-audit.md`, `executive-summary.md`, `data-gap-report.md`, and `action-register.md` as needed.
-6. Review with the property decision owner and record accepted, rejected, deferred, and tested actions.
+1. Complete `shared/intake/questionnaire.md` and confirm the scope and as-of timestamp.
+2. Import authorized internal exports with `scripts/data_workflow.py`; retain source evidence and provenance.
+3. Derive descriptive past-performance metrics transparently from supplied evidence. The review engine does not provide a complete historical audit calculator.
+4. Use the offline review engine for the provisional future outlook where inputs support it. Review the hotel's RM process separately.
+5. Record findings using the evidence rules and relevant audit, executive-summary, gap and action templates.
+6. Record the owner's decisions. Operational changes require separate authorization and destination-system checks.

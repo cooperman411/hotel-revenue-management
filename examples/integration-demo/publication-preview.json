@@ -11,7 +11,7 @@
       "approved_rate": 215,
       "currency": "USD",
       "recommendation_id": "177d0a4eabdaef27910f",
-      "approval_reference": "d1f5ceb4cb069854d4c3c7afaece3f38ae6c6a51d86effc62cbd630e08212bd4",
+      "approval_reference": "568a40f09d5af751bf280fa7af98f7bc264770d5f3ead7954006d7c1cc64829f",
       "existing_rate": 200
     }
   ],
@@ -20,5 +20,5 @@
     "Offline mock only; no live connection",
     "Unknown existing rates block mock publication"
   ],
-  "batch_hash": "21af1a5e2396cec8068f82aa49ae234917f5ed3e4ead86e502dec9cd9cca5e9d"
+  "batch_hash": "20de1e93e2d4924b95f4fea69acc941d2117299f725de752dc7c2c6a144b0d0a"
 }

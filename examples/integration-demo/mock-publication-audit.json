@@ -4,10 +4,10 @@
       "key": "MOCK-H1|2026-11-20|STD|FLEX",
       "old_rate": 200,
       "new_rate": 215,
-      "batch_hash": "21af1a5e2396cec8068f82aa49ae234917f5ed3e4ead86e502dec9cd9cca5e9d",
+      "batch_hash": "20de1e93e2d4924b95f4fea69acc941d2117299f725de752dc7c2c6a144b0d0a",
       "authorization": {
         "decision": "authorize_publication",
-        "batch_hash": "21af1a5e2396cec8068f82aa49ae234917f5ed3e4ead86e502dec9cd9cca5e9d",
+        "batch_hash": "20de1e93e2d4924b95f4fea69acc941d2117299f725de752dc7c2c6a144b0d0a",
         "reviewer": "Synthetic Publisher",
         "authorized_at": "2026-11-07T02:01:00+00:00"
       },

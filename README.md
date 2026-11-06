@@ -1,45 +1,30 @@
 # Hotel Revenue Management Toolkit
 
-> **Status: In development.**
->
-> This toolkit is a work in progress. It runs end to end on a synthetic demo hotel, with validation, historical analysis, and explainable daily rate recommendations, and human review before any pricing change. Live market-data retrieval is not built yet: Veetal is specified but not implemented, and there is no live Mews connector or live rate-shopper retrieval. See `HOW_TO_USE_THIS_TOOLKIT.md` for what works now and what does not.
+**Status: in development.** This private project has not been used or tested with real hotel data, PMS systems, competitor feeds or live websites. Included examples and automated checks use synthetic data only.
 
-An AI/LLM-agnostic, human-supervised toolkit for hotel revenue audits and property-specific rate recommendations.
+**Use at your own risk.** This project is in development and has not been validated with real hotel data or live systems. You are responsible for checking inputs, calculations, recommendations, destination mappings and every operational change. Incorrect outputs or imports can cause financial loss, data loss, or unintended changes to hotel rates and systems. Preserve recoverable backups, verify the destination system's import and recovery procedures, and independently review every change before operational use. The software and documentation are provided without warranty under the [MIT License](LICENSE), which includes a limitation of author liability.
 
-## Included
+The toolkit supports evidence-based hotel revenue audits and provisional daily rate guidance. It uses reusable CSV imports, an offline empirical pickup engine, review reports, editable XLSX/CSV outputs, recorded human decisions and approved-rate CSV exports. Live PMS retrieval, live competitor retrieval and live rate publishing are not implemented. The only API destination is an offline mock.
 
-- `skills/hotel-revenue-audit/` — audit past performance, future outlook, and the revenue-management process.
-- `skills/hotel-rate-optimizer/` — produce explainable daily rate recommendations for a configurable 180+ day horizon.
-- `shared/` — intake questionnaire, normalized schemas, evidence rules, methodology, workflows, and report templates.
-- `scripts/` — deterministic, dependency-light validation and calculation helpers.
-- `adapters/` - generic CSV first, with Mews and market-data integration boundaries (Veetal Connect API specified but not implemented yet, rate shoppers documented).
-- `reference-only/` — notes about the supplied Hospitality Manager / revenue-management reference.
-- `HOW_TO_USE_THIS_TOOLKIT.md` — human operating guide from questionnaire through approved action.
+## Start
 
-## Architecture
+Read [How to use the toolkit](HOW_TO_USE_THIS_TOOLKIT.md). [Review workflow](REVIEW_WORKFLOW.md) explains the calculation and approval contract. [Data imports and publishing](DATA_AND_PUBLISHING.md) covers reusable mappings, export checks and the offline publication protocol.
 
-The toolkit separates evidence collection, deterministic calculations, and interpretation:
+- `skills/hotel-revenue-audit/`: interpret supplied evidence for past performance, future outlook and the revenue-management process.
+- `skills/hotel-rate-optimizer/`: run and explain provisional rate recommendations for an explicit date range.
+- `shared/`: intake, current schemas, methodology and report templates.
+- `scripts/`: CSV normalization, empirical review, report generation, human decisions and approved exports.
+- `examples/review-demo/` and `examples/integration-demo/`: fictional inputs and outputs.
+- `tests/`: offline calculation, mapping and approval checks.
 
-1. Import from an API when a supported adapter is available; otherwise export CSV files into the generic CSV adapter.
-2. Validate and normalize data without guest or employee PII.
-3. Run deterministic calculations for history, pace, availability, market position, and rate recommendations.
-4. Have an AI/LLM or analyst interpret structured outputs using the relevant skill and references.
-5. Require human review before publishing rates, restrictions, or action plans.
+Give an assistant access to the whole repository so the skills can read their shared resources. No particular AI provider or PMS is required. Preserve original evidence outside the repository and keep credentials and hotel/client data out of source control.
 
-No model, vendor, PMS, CRS, or RMS is required. JSON and CSV contracts are the stable interface.
+## Method and limits
 
-## Operating principles
+The engine reconstructs bookings at comparable lead times and applies empirical future pickup from reliable, completed, unsold-out historical dates. Configured rate rules bound movements. Outputs use `provisional` or `insufficient` confidence. These labels do not establish forecast accuracy, optimal prices or revenue uplift. Optional competitor exports remain separate review evidence and do not affect the engine's rates or confidence.
 
-- Evidence before explanation; confidence and data gaps are explicit.
-- Historical patterns are segmented by property, room type, date, day of week, season, lead time, channel, and occupancy where sample size allows.
-- Recommendations are bounded by property-configured floors, ceilings, inventory scarcity, pace, market position, and human overrides.
-- A missing signal is not treated as a zero signal.
-- The toolkit recommends; an authorized human approves and publishes.
+A human reviews every recommendation. Approving a rate does not authorize publication. The toolkit cannot make live PMS writes; any manual import must follow the hotel's own review, backup and confirmation process.
 
-## Offline Review Outputs
+## License
 
-See [REVIEW_WORKFLOW.md](REVIEW_WORKFLOW.md) for the provisional empirical pickup engine, sample HTML report, editable XLSX/CSV, human decisions and approved-rate record. This workflow does not yet complete the full research specification.
-
-## Data Imports and Approved Publishing
-
-See [DATA_AND_PUBLISHING.md](DATA_AND_PUBLISHING.md) for reusable CSV mapping, required export fields, approved-only rate exports, and the offline publishing protocol. Live PMS publishing remains disabled. No PMS-specific CSV format is currently verified.
+[MIT License](LICENSE). Copyright (c) 2026 Kerry Cooper.

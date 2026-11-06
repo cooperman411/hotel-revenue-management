@@ -1,5 +1,7 @@
-# Future Outlook Methodology
+# Future outlook
 
-Start with the future inventory calendar and current OTB reservations. Compare OTB occupancy, room nights, revenue, and ADR at each lead time with comparable historical booking curves. Where no historical snapshots exist, label pace as unavailable and rely on current availability plus other evidence.
+Use current inventory, bookings known at the analysis timestamp and the provisional empirical pickup outputs described in [REVIEW_WORKFLOW.md](../../REVIEW_WORKFLOW.md). Calendar cutoffs and lead days use the property timezone.
 
-Review arrivals by date, room type, channel, LOS, cancellation exposure, group blocks, events, and comp position. Separate demand risk from inventory risk. Produce a dated outlook with base, upside, and downside narratives only when the data supports them.
+Distinguish current bookings, observed pickup, empirical scenarios and judgment. Forecast confidence is `provisional` or `insufficient`; no calibrated probability or forecast accuracy is established. Missing inventory and unreliable or sparse history remain explicit gaps. Unpicked group blocks exclude reservations already counted and are conservatively assumed to materialize fully.
+
+Events, channel mix, group contribution and competitor conditions can inform a separate human assessment when supplied. They are not hidden inputs to the current model. Do not invent scenarios or claim modeled effects for unsupported signals.

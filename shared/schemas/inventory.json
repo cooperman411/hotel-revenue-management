@@ -1,13 +1,45 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Normalized daily inventory fact",
+  "title": "Daily inventory net of out-of-order rooms",
   "type": "object",
-  "required": ["stay_date", "room_type", "sellable_rooms"],
+  "required": [
+    "property_id",
+    "stay_date",
+    "room_type",
+    "sellable_rooms"
+  ],
   "properties": {
-    "stay_date": {"type": "string", "format": "date"},
-    "room_type": {"type": "string"},
-    "sellable_rooms": {"type": "integer", "minimum": 0},
-    "out_of_order_rooms": {"type": "integer", "minimum": 0},
-    "group_block_rooms": {"type": "integer", "minimum": 0}
+    "property_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "stay_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "room_type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sellable_rooms": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "physical_rooms": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "out_of_order_rooms": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "unpicked_group_rooms": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "history_reliable": {
+      "type": "boolean",
+      "description": "Explicitly reviewed historical inventory and booking completeness."
+    }
   }
 }

@@ -2,11 +2,36 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "AI/LLM-agnostic audit state",
   "type": "object",
-  "required": ["run_id", "as_of_date", "inputs", "findings"],
+  "required": [
+    "run_id",
+    "as_of",
+    "inputs",
+    "findings"
+  ],
   "properties": {
-    "run_id": {"type": "string"},
-    "as_of_date": {"type": "string", "format": "date"},
-    "inputs": {"type": "array", "items": {"type": "object"}},
-    "findings": {"type": "array", "items": {"type": "object", "required": ["classification", "confidence", "evidence"]}}
+    "run_id": {
+      "type": "string"
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "classification",
+          "evidence_strength",
+          "evidence"
+        ]
+      }
+    },
+    "as_of": {
+      "type": "string",
+      "format": "date-time"
+    }
   }
 }

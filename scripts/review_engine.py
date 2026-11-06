@@ -2,6 +2,7 @@
 """Offline empirical pickup forecasts and human review outputs. No publishing APIs."""
 import argparse, csv, hashlib, html, json, math, statistics, zipfile
 from datetime import date, datetime, timedelta
+from zoneinfo import ZoneInfo
 from pathlib import Path
 from xml.sax.saxutils import escape
 
@@ -18,6 +19,7 @@ def normalize(rows):
     facts={}
     for source in rows:
         r=dict(source)
+        if r['status'] not in ('booked','checked_in','checked_out','cancelled','no_show'): raise ValueError('Invalid reservation status')
         stamp(r['booked_at'])
         for key in ('cancelled_at','no_show_at'):
             if r.get(key) and stamp(r[key])<stamp(r['booked_at']): raise ValueError('Status precedes booking')
@@ -30,7 +32,7 @@ def normalize(rows):
         else: days=[r['stay_date']]
         for day in days:
             date.fromisoformat(day)
-            f={**r,'stay_date':day,'rooms':r.get('rooms',r.get('room_nights',1))}
+            f={**r,'stay_date':day,'rooms':r['rooms']}
             if not isinstance(f['rooms'],int) or f['rooms']<=0: raise ValueError('Rooms must be positive integers per night')
             if f.get('adr',0)<0: raise ValueError('Negative ADR')
             key=(f['reservation_key'],day)
@@ -42,7 +44,13 @@ def active(r,at):
     return stamp(r['booked_at'])<=at and not any(r.get(k) and stamp(r[k])<=at for k in ('cancelled_at','no_show_at'))
 
 def analyze(data):
-    at=stamp(data['as_of']); prop=data['property']; policy=prop['rate_policy']; facts=normalize(data['reservations'])
+    prop=data['property']; at=stamp(data['as_of']).astimezone(ZoneInfo(prop['timezone'])); policy=prop['rate_policy']; facts=normalize(data['reservations'])
+    types=[r['room_type'] for r in prop['room_types']]
+    for kind,rows in (('reservations',facts),('inventory',data['inventory']),('rates',data.get('rates',[]))):
+        for row in rows:
+            if row['property_id']!=prop['property_id']: raise ValueError('Wrong property in '+kind)
+            if row['room_type'] not in types: raise ValueError('Unknown room type in '+kind)
+            if kind in ('reservations','rates') and row['currency']!=prop['currency']: raise ValueError('Currency mismatch in '+kind)
     start=date.fromisoformat(data['start']); days=data['days']
     if days<1 or start<at.date(): raise ValueError('Invalid forecast horizon')
     lo,hi=policy['min_rate'],policy['max_rate']; baseline=policy['default_rate']; cap=policy.get('adjustment_cap_pct',.15)
@@ -62,7 +70,7 @@ def analyze(data):
             if key in rates: raise ValueError('Duplicate current rate')
             rates[key]=r['rate']
     out=[]; gaps=[]
-    types=[r['room_type'] for r in prop['room_types']]; plans=data.get('rate_plans',['BAR'])
+    plans=data.get('rate_plans',['BAR'])
     for offset in range(days):
         day=start+timedelta(days=offset); keyday=day.isoformat(); lead=(day-at.date()).days
         for typ in types:

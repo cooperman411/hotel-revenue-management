@@ -5,7 +5,7 @@ from data_workflow import approved_export,csv_write,EXPORT_FIELDS,import_csv
 from publishing import MockDestination,preview,key,publish_mock
 p=Path(__file__).parent
 load=lambda f:json.loads((ROOT/f).read_text())
-config={'property_id':'synthetic-inn','currency':'USD','authorized_reviewers':['Synthetic Reviewer'],'destination_mappings':{'property_id':{'synthetic-inn':'MOCK-H1'},'room_type':{'standard':'STD'},'rate_plan':{'BAR':'FLEX'}}}
+config={'property_id':'synthetic-inn','currency':'USD','timezone':'UTC','authorized_reviewers':['Synthetic Reviewer'],'destination_mappings':{'property_id':{'synthetic-inn':'MOCK-H1'},'room_type':{'standard':'STD'},'rate_plan':{'BAR':'FLEX'}}}
 (p/'export-config.json').write_text(json.dumps(config,indent=2))
 export=approved_export(load('examples/review-demo/analysis.json'),load('examples/review-demo/decisions.json'),config,'2026-11-07T02:00:00+00:00')
 csv_write(p/'approved-rates.csv',export['rows'],EXPORT_FIELDS);(p/'approval-audit.json').write_text(json.dumps(export,indent=2))

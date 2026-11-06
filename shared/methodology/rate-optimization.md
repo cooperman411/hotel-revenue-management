@@ -1,13 +1,9 @@
-# Rate Optimization Methodology
+# Provisional rate guidance
 
-The baseline is property-specific historical ADR for comparable stay dates, primarily by room type, day of week, and month/season. The engine then applies bounded, explainable adjustments only when supported by available evidence:
+Use `scripts/review_engine.py` and [REVIEW_WORKFLOW.md](../../REVIEW_WORKFLOW.md). Reconstruct bookings at equivalent lead times for reliable completed historical dates matching room type, weekday and adjacent month within two years. Exclude sold-out dates and dates with unpicked group blocks. Add empirical net future pickup to current bookings, scaled by inventory.
 
-1. current OTB occupancy relative to historical occupancy distribution;
-2. pace versus historical snapshots, if snapshots exist;
-3. inventory scarcity and remaining availability;
-4. comp-set median position, if market rates are supplied;
-5. room-type scarcity and configured floor/ceiling.
+At least five analogs are required for provisional P10/P50/P90 demand, expected occupancy and empirical sellout frequency. These are uncalibrated scenarios, not validated unconstrained-demand probabilities. Fewer analogs produce insufficient support and no forecast-driven movement.
 
-Adjustments are capped by configuration and are not universal multipliers. A missing signal contributes no adjustment and reduces confidence. The output is a recommendation and range, never an automatic live-rate change.
+Use a fresh published rate as the reference when available, otherwise flag the configured default reference. Configured compression and expected-occupancy thresholds determine bounded movements within rate floors and ceilings. These are explicit decision rules, not estimated optimal prices. Low current occupancy alone never triggers a discount. Competitor exports remain separate evidence and do not change rates or confidence.
 
-The first engine is intentionally statistical and explainable. A future model may estimate elasticity or optimize expected contribution, but it must be back-tested, monitored for drift, and kept subordinate to human approval.
+The engine does not establish elasticity, contribution-based displacement, forecast accuracy or revenue uplift. Every recommendation starts pending and requires an identified human decision. Live rate publishing is disabled.

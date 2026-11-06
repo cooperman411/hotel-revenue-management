@@ -4,11 +4,11 @@
 
 CSV imports work for reservation-night history, inventory, published rates and customer-authorized competitor exports. Reusable profiles map source headers and identifiers. Standard approved-rate CSV export works. Destination-specific CSV mapping is implemented and tested with a fictional format only. No PMS-specific import format is verified or shipped. The API protocol has a tested offline mock, exact preview approval and a durable attempt ledger. Live API publishing is disabled, with no provider adapter or network transport.
 
-Task 4's forecasts remain provisional. This integration work does not establish predictive accuracy or complete its outstanding forecasting research.
+Forecasts remain provisional. Imports, exports and mock publication checks do not establish predictive accuracy.
 
 ## First Use
 
-Ask your AI assistant or analyst to configure the property and save a mapping profile using `examples/integration-demo/mapping-profile.json`. Give them the system's unedited export and its field definitions. Check the proposed property, room type and rate plan matches. Confirm currency, time zones, inventory meaning and who may approve rates. Reuse the checked profile on later runs. Recheck it when export columns or system identifiers change.
+Ask your AI assistant or analyst to configure the property and save a mapping profile using `examples/integration-demo/mapping-profile.json`. Give them the system's unedited export and its field definitions. Check the proposed property, room type and rate plan matches. Confirm currency, time zones, inventory meaning and who may approve rates. The property and export configuration must name the same IANA timezone; analysis and export calendar cutoffs use it. Reuse the checked profile on later runs. Recheck it when export columns or system identifiers change.
 
 | Data | Requirement | What to Request |
 |---|---|---|
@@ -42,7 +42,7 @@ Use a hotel's existing, legally authorized rate-shopper export first. This can c
 
 Match currency, room class, rate plan, occupancy, length of stay, tax/fee basis, cancellation terms and meal plan. Keep channel, observation time, source, source hotel and availability. The importer rejects stale observations and incompatible conditions. An unavailable offer is not proof that the hotel is physically sold out. Competitor records are preserved separately for review; they do not mechanically alter the provisional pricing model. A hotel with no competitor data can run the full internal-data workflow.
 
-No new commercial API provider is selected. The research supports import-first use and requires further field/rights validation before selecting a default API. Veetal is not implemented. Affordable/free API access must still have documented terms, product comparability and account authorization. No trials or paid requests are part of this toolkit.
+No live commercial API provider is implemented. Any future connection needs documented terms, product comparability and account authorization.
 
 ## Approved CSV and Audit
 
@@ -69,4 +69,4 @@ python3 scripts/data_workflow.py export examples/review-demo/analysis.json examp
 PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -v
 ```
 
-These dates and approvals are fictional fixtures. Routine use must supply the current analysis and time. `assemble_analysis` joins normalized reservation, inventory and optional rate imports into the Task 4 analysis. Competitor records remain a separate evidence file. Sample CSVs, normalization results, publication preview, approved export and mock audit are in `examples/integration-demo/`. SQLite ledgers created during tests are temporary and are not committed.
+These dates and approvals are fictional fixtures. Routine use must supply the current analysis and time. `assemble_analysis` joins normalized reservation, inventory and optional rate imports into the offline review analysis, verifying import property and currency against the property configuration. The `analyze` command exposes this path; see `HOW_TO_USE_THIS_TOOLKIT.md`. Competitor records remain a separate evidence file. Sample CSVs, normalization results, publication preview, approved export and mock audit are in `examples/integration-demo/`. SQLite ledgers created during tests are temporary and are not committed.

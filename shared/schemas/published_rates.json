@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Published selling-rate observation",
+  "type": "object",
+  "required": [
+    "property_id",
+    "stay_date",
+    "room_type",
+    "rate_plan",
+    "rate",
+    "currency",
+    "observed_at"
+  ],
+  "properties": {
+    "property_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "stay_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "room_type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "rate_plan": {
+      "type": "string",
+      "minLength": 1
+    },
+    "rate": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "observed_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

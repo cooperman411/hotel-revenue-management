@@ -1,6 +1,7 @@
 {
   "property_id": "synthetic-inn",
   "currency": "USD",
+  "timezone": "UTC",
   "authorized_reviewers": [
     "Synthetic Reviewer"
   ],

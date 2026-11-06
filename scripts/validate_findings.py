@@ -11,15 +11,15 @@ def main():
     with open(args.findings, encoding="utf-8") as f: data = json.load(f)
     errors = []
     allowed = {"observed", "derived", "inferred", "recommended"}
-    confidences = {"high", "medium", "low"}
+    strengths = {"high", "medium", "low"}
     for index, finding in enumerate(data.get("findings", []), 1):
-        for key in ("classification", "confidence", "evidence"):
+        for key in ("classification", "evidence_strength", "evidence"):
             if not finding.get(key):
                 errors.append(f"finding {index}: missing {key}")
         if finding.get("classification") not in allowed:
             errors.append(f"finding {index}: invalid classification")
-        if finding.get("confidence") not in confidences:
-            errors.append(f"finding {index}: invalid confidence")
+        if finding.get("evidence_strength") not in strengths:
+            errors.append(f"finding {index}: invalid evidence strength")
         if not isinstance(finding.get("evidence"), list):
             errors.append(f"finding {index}: evidence must be a list")
     result = {"valid": not errors, "errors": errors, "findings": len(data.get("findings", []))}

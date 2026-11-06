@@ -11,4 +11,4 @@ Before analysis, check:
 - inventory reconciliation: sellable rooms, out-of-order, sold, and remaining availability;
 - date/timezone consistency and currency.
 
-Errors block calculations. Warnings lower confidence and appear in the report. The toolkit does not silently repair contradictory inventory or reservation facts.
+Errors block calculations. Warnings appear in the report. Forecast confidence follows the current `provisional`/`insufficient` contract. The toolkit does not silently repair contradictory inventory or reservation facts.

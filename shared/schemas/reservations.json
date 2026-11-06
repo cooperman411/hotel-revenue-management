@@ -1,17 +1,131 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Normalized reservation fact",
+  "title": "Reservation facts for the offline review",
   "type": "object",
-  "required": ["reservation_key", "stay_date", "room_type", "room_nights", "adr", "status", "booked_at"],
+  "required": [
+    "property_id",
+    "reservation_key",
+    "room_type",
+    "rooms",
+    "adr",
+    "currency",
+    "status",
+    "booked_at"
+  ],
   "properties": {
-    "reservation_key": {"type": "string", "description": "Pseudonymous stable key; no guest identifier."},
-    "stay_date": {"type": "string", "format": "date"},
-    "room_type": {"type": "string"},
-    "room_nights": {"type": "number", "minimum": 0},
-    "adr": {"type": "number", "minimum": 0},
-    "status": {"type": "string", "enum": ["booked", "checked_in", "checked_out", "cancelled", "no_show"]},
-    "booked_at": {"type": "string", "format": "date-time"},
-    "channel": {"type": "string"},
-    "rate_plan": {"type": "string"}
-  }
+    "property_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "stay_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "room_type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reservation_key": {
+      "type": "string",
+      "minLength": 1
+    },
+    "rooms": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "adr": {
+      "type": "number",
+      "minimum": 0
+    },
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "status": {
+      "enum": [
+        "booked",
+        "checked_in",
+        "checked_out",
+        "cancelled",
+        "no_show"
+      ]
+    },
+    "booked_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "cancelled_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "no_show_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "arrival": {
+      "type": "string",
+      "format": "date"
+    },
+    "departure": {
+      "type": "string",
+      "format": "date"
+    },
+    "rate_plan": {
+      "type": "string",
+      "minLength": 1
+    },
+    "channel": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "anyOf": [
+    {
+      "required": [
+        "stay_date"
+      ]
+    },
+    {
+      "required": [
+        "arrival",
+        "departure"
+      ]
+    }
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "cancelled"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "required": [
+          "cancelled_at"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "no_show"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "required": [
+          "no_show_at"
+        ]
+      }
+    }
+  ]
 }
