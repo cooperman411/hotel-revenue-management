@@ -1,57 +1,58 @@
 # Hotel Revenue Management Toolkit
 
-**Status: in development.** This project has not been used or tested with real hotel data, PMS systems, competitor feeds or live websites. Included examples and automated checks use synthetic data only.
+Use authorized hotel exports to review revenue performance and prepare provisional daily rate recommendations. Review the results offline and export approved rates for a separate, hotel-controlled import.
 
-**Use at your own risk.** This project is in development and has not been validated with real hotel data or live systems. You are responsible for checking inputs, calculations, recommendations, destination mappings and every operational change. Incorrect outputs or imports can cause financial loss, data loss, or unintended changes to hotel rates and systems. Preserve recoverable backups, verify the destination system's import and recovery procedures, and independently review every change before operational use. The software and documentation are provided without warranty under the [MIT License](LICENSE), which includes a limitation of author liability.
-
-The toolkit supports evidence-based hotel revenue audits and provisional daily rate guidance. It uses reusable CSV imports, an offline empirical pickup engine, review reports, editable XLSX/CSV outputs, recorded human decisions and approved-rate CSV exports. Live PMS retrieval, live competitor retrieval and live rate publishing are not implemented. The only API destination is an offline mock.
-
-## Why this exists
-
-I wanted to explore how an independent hotel could get a useful revenue review from the data it can already export, without first buying a full revenue-management system or market-data subscription. This toolkit turns those files into a provisional outlook, rate recommendations, and a review pack a revenue manager can inspect and challenge. It makes the evidence, gaps, and limits visible so the next human decision is easier.
-
-It favors understandable files, practical steps, and tools that remain useful across different AI assistants and hotel systems. A person reviews each recommendation, records a decision, and controls any later import.
-
-## What makes this different
-
-This is an offline, human-reviewed toolkit for working from hotel exports; it is not a live RMS or automated pricing service. It does not fetch competitor rates, continuously optimize prices, or write to a live PMS. The current engine uses empirical pickup from comparable historical dates and configured guardrails to produce provisional guidance. It keeps uncertainty visible, requires an explicit human decision, and exports only approved values for a separate, hotel-controlled import process.
+**In development.** The toolkit has been tested only with synthetic data.
 
 ## Start
 
-Copy this prompt into your AI assistant:
+Paste this prompt into your AI assistant.
 
 ```text
-Help me use the Hotel Revenue Management Toolkit in this repository:
+Help me use the Hotel Revenue Management Toolkit in this repository.
 https://github.com/cooperman411/hotel-revenue-management
 
-Read README.md and HOW_TO_USE_THIS_TOOLKIT.md, then guide me through an offline review using my hotel's authorized data exports. Explain the required files and any data gaps before analysis. Do not treat recommendations as validated forecasts or attempt live PMS changes.
+Read README.md and HOW_TO_USE_THIS_TOOLKIT.md. Check my authorized hotel exports and explain any data gaps. Guide me through an offline review. Treat rate recommendations as provisional.
 ```
 
-If your assistant cannot open the repository, provide it with the relevant files from this folder. Read [How to use the toolkit](HOW_TO_USE_THIS_TOOLKIT.md) for the full workflow. [Review workflow](REVIEW_WORKFLOW.md) explains the calculation and approval contract. [Data imports and publishing](DATA_AND_PUBLISHING.md) covers reusable mappings, export checks and the offline publication protocol.
+If your assistant cannot open the repository, provide the relevant files, including the shared resources the skills reference. Keep original hotel records in private storage and keep credentials and hotel data out of source control.
 
-- `skills/hotel-revenue-audit/`: interpret supplied evidence for past performance, future outlook and the revenue-management process.
-- `skills/hotel-rate-optimizer/`: run and explain provisional rate recommendations for an explicit date range.
-- `shared/`: intake, current schemas, methodology and report templates.
-- `scripts/`: CSV normalization, empirical review, report generation, human decisions and approved exports.
-- `examples/review-demo/` and `examples/integration-demo/`: fictional inputs and outputs.
-- `tests/`: offline calculation, mapping and approval checks.
+## Why This Exists
 
-Give an assistant access to the whole repository so the skills can read their shared resources. No particular AI provider or PMS is required. Preserve original evidence outside the repository and keep credentials and hotel/client data out of source control.
+I wanted to see what an independent hotel could learn from the data it can already export. The toolkit turns those files into a provisional outlook and a review report. A revenue manager can inspect the evidence, see where data is missing, and decide which rates to approve. The toolkit works across AI assistants and uses files the hotel can retain.
 
-## Method and limits
+## What the Toolkit Includes
 
-The engine reconstructs bookings at comparable lead times and applies empirical future pickup from reliable, completed, unsold-out historical dates. Configured rate rules bound movements. Outputs use `provisional` or `insufficient` confidence. These labels do not establish forecast accuracy, optimal prices or revenue uplift. Optional competitor exports remain separate review evidence and do not affect the engine's rates or confidence.
+- `skills/hotel-revenue-audit/` reviews evidence on past performance, the outlook, and the hotel's revenue process.
+- `skills/hotel-rate-optimizer/` prepares and explains provisional rate recommendations for a specified date range.
+- `shared/` contains intake guides, data formats, methodology, and report templates.
+- `scripts/` handles CSV imports, offline calculations, reports, editable XLSX or CSV outputs, approval records, and approved-rate CSV exports.
+- `examples/review-demo/` and `examples/integration-demo/` contain fictional inputs and outputs.
+- `tests/` checks offline calculations, mappings, and approvals.
 
-A human reviews every recommendation. Approving a rate does not authorize publication. The toolkit cannot make live PMS writes; any manual import must follow the hotel's own review, backup and confirmation process.
+See [How to Use the Toolkit](HOW_TO_USE_THIS_TOOLKIT.md), [Review Workflow](REVIEW_WORKFLOW.md), and [Data Imports and Publishing](DATA_AND_PUBLISHING.md).
 
-## Other public projects by Cooperman411
+## Method and Limits
 
-These are separate projects. They are not prerequisites, dependencies, or additional instructions for using this repository.
+The toolkit uses booking activity from comparable historical dates to estimate how many more bookings may arrive. It uses completed dates with reliable data and excludes sold-out dates. Configured rate rules limit changes. The engine reports confidence as `provisional` or `insufficient`. Treat these as review labels and verify the evidence before relying on the output. Competitor exports can inform human review and remain separate from rate calculations.
 
-- [Hotel Group Sourcing Skill](https://github.com/cooperman411/hotel-group-rfp): An AI-assisted workflow for hotel group RFPs, proposal tracking, comparison, and decision reporting.
-- [PT/OS One](https://github.com/cooperman411/plain-text-os-one): A single plain-text document you give an AI assistant to carry forward your preferences, projects, decisions, and recurring tasks.
-- [PT/OS Workspace](https://github.com/cooperman411/plain-text-os): A collection of plain-text files an AI assistant can read and update to organize projects, priorities, and workflows.
-- [AteBit.Tech](https://github.com/cooperman411/AteBitTech): A curated directory of retro and vintage computing resources.
+The toolkit runs offline and uses an offline mock as its only API destination. Supply authorized hotel exports and include competitor exports if available.
+
+## Before Operational Use
+
+Check inputs, calculations, and recommendations independently. Record a decision for each rate before export. Before importing approved rates, verify the destination mappings. Preserve recoverable backups and follow the hotel's import, confirmation, and recovery procedures.
+
+Errors can change rates, damage data, or cause financial loss. Use the toolkit at your own risk under the [MIT License](LICENSE), which limits liability and provides the software and documentation without warranty.
+
+## Public Projects
+
+- [AteBit.Tech](https://github.com/cooperman411/AteBitTech)
+- [AI Sales Prospecting & Outreach](https://github.com/cooperman411/ai-sales-prospecting-outreach)
+- [AI Social Publishing for Muse](https://github.com/cooperman411/ai-social-publishing)
+- [Hotel Group Sourcing Skill](https://github.com/cooperman411/hotel-group-rfp)
+- [Hotel Revenue Management Toolkit](https://github.com/cooperman411/hotel-revenue-management)
+- [PT/OS One](https://github.com/cooperman411/plain-text-os-one)
+- [PT/OS Workspace](https://github.com/cooperman411/plain-text-os)
 
 ## License
 
