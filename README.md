@@ -15,6 +15,16 @@ Read README.md and HOW_TO_USE_THIS_TOOLKIT.md, then guide me through an offline 
 
 If your assistant cannot open the repository, provide it with the relevant files from this folder.
 
+## Install or download the complete toolkit
+
+Use GitHub's **Code → Download ZIP**, or clone the full repository:
+
+```bash
+git clone https://github.com/cooperman411/hotel-revenue-management.git
+```
+
+Keep the repository's `skills/`, `shared/`, `scripts/`, examples, and guides together, then follow the **Start** prompt above. The two `SKILL.md` files refer to resources outside their individual skill folders; installing a single skill folder with an agent-skill installer does **not** install the complete working toolkit. Script execution and spreadsheet outputs require an AI environment with the appropriate file and Python capabilities.
+
 ## Why this exists
 
 I wanted to explore how an independent hotel could get a useful revenue review from the data it can already export, without first buying a full revenue-management system or market-data subscription. This toolkit turns those files into a provisional outlook, rate recommendations, and a review pack a revenue manager can inspect and challenge. It makes the evidence, gaps, and limits visible so the next human decision is easier.
@@ -59,5 +69,6 @@ This toolkit is a decision aid, not a revenue management system. Its recommendat
 - [AI Social Publishing for Muse](https://github.com/cooperman411/ai-social-publishing)
 - [Hotel Group Sourcing Skill](https://github.com/cooperman411/hotel-group-rfp)
 - [Hotel Revenue Management Toolkit](https://github.com/cooperman411/hotel-revenue-management)
+- [Job Search Simplified](https://github.com/cooperman411/job-search-simplified)
 - [PT/OS One](https://github.com/cooperman411/plain-text-os-one)
 - [PT/OS Workspace](https://github.com/cooperman411/plain-text-os)
